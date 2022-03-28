@@ -19,10 +19,10 @@ const SingInForm = () => {
           <input type="checkbox" id="remember-me" />
           <label for="remember-me">Remember me</label>
         </div>
-        <Link to="/dashboard" class="sign-in-button">
-          Sign In
-        </Link>
-        <button class="sign-in-button">Sign In</button>
+        <Link to="/dashboard" class="sign-in-button">Sign In
+</Link>
+        {/* SHOULD BE THE BUTTON BELOW*/}
+        {/* <button class="sign-in-button">Sign In</button> --> */}
       </form>
     </section>
   );

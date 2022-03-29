@@ -1,20 +1,5 @@
 {
-  "name": "my-library-P13OC",
-  "version": "1",
-  "prettier": "@company/prettier-config",
-  "overrides": [
-    {
-      "files": ".prettierrc",
-      "options": { "parser": "json" }
-    }
-  ],
-  "trailingComma": "es5",
-  "tabWidth": 3,
-  "semi": true,
-  "singleQuote": true,
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  }
+   "rules": {
+      
+   }
 }

@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SingInForm = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPasseword] = useState("");
+  const [remember, setRemember] = useState(false);
+  
+  // console.log(maVariable);
   return (
-    <section class="sign-in-content">
-      <i class="fa fa-user-circle sign-in-icon"></i>
+    <section className="sign-in-content">
+      <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
       <form>
-        <div class="input-wrapper">
-          <label for="username">Username</label>
-          <input type="text" id="username" />
+        <div className="input-wrapper">
+          <label htmlFor="username">Username</label>
+          <input 
+          type="text" 
+          id="username" 
+          value={userName} 
+          onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
-        <div class="input-wrapper">
-          <label for="password">Password</label>
-          <input type="password" id="password" />
+        <div className="input-wrapper">
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" value={password} onChange={(e) => setPasseword(e.target.value)}
+/>
         </div>
-        <div class="input-remember">
-          <input type="checkbox" id="remember-me" />
-          <label for="remember-me">Remember me</label>
+        <div className="input-remember">
+          <label htmlFor="remember-me">Remember me</label>
+          <input type="checkbox" id="remember-me" value={remember} onChange={(e) => setRemember(e.target.value)}
+/>
         </div>
-        <Link to="/dashboard" class="sign-in-button">Sign In
-</Link>
+        {/* <Link to="/dashboard" className="sign-in-button">Sign In</Link> */}
         {/* SHOULD BE THE BUTTON BELOW*/}
-        {/* <button class="sign-in-button">Sign In</button> --> */}
+        <button className="sign-in-button">Sign In</button>
       </form>
     </section>
   );

@@ -9,9 +9,9 @@ const Dashboard = () => {
          <Helmet>
             <title>Argent Bank - Dashboard</title>
          </Helmet>
-         <main class="main bg-dark">
+         <main className="main bg-dark">
             <Hello />
-            <h2 class="sr-only">Accounts</h2>
+            <h2 className="sr-only">Accounts</h2>
             <Balances />
          </main>
       </HelmetProvider>

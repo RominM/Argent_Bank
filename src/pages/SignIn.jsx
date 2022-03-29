@@ -8,7 +8,7 @@ const SignIn = () => {
          <Helmet>
             <title>Argent Bank - Sign In</title>
          </Helmet>
-         <main class="main bg-dark">
+         <main className="main bg-dark">
             <SingInForm />
          </main>
       </HelmetProvider>

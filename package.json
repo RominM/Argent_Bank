@@ -9,7 +9,10 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/react-router-dom": "^5.3.3",
+<<<<<<< HEAD
     "axios": "^0.26.1",
+=======
+>>>>>>> 0382a71ac573cdd0d74e240c9eb654426b6378c0
     "g": "^2.0.1",
     "immer": "^9.0.12",
     "mongodb": "^4.4.1",

@@ -9,18 +9,13 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/react-router-dom": "^5.3.3",
-<<<<<<< HEAD
     "axios": "^0.26.1",
-=======
->>>>>>> 0382a71ac573cdd0d74e240c9eb654426b6378c0
-    "g": "^2.0.1",
     "immer": "^9.0.12",
-    "mongodb": "^4.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.2.3",
-    "react-redux": "^7.2.6",
+    "react-redux": "^7.2.8",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",

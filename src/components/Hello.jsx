@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Hello = () => {
+  const [user, setUser] = useState(null);
+  // setUser(currentUser);
+
+  const handleEdit = () => {
+    console.log('Handle Edit');
+  };
+
+  const handleLogout = () => {
+    console.log('Handle Logout');
+  }
+
   return (
     <div className="header">
-      <h1>
-        Welcome back
-        <br />
-        Tony Jarvis!
-      </h1>
-      <button className="edit-button">Edit Name</button>
+      {user && (
+        <h1>
+          Welcome back
+          <br />
+          {user.name}
+        </h1>
+      )}
+      <button className="edit-button" onClick={() => handleEdit()}>Edit Name</button>
+      <button className='logout-button' onClick={() => handleLogout()}>Logout</button>
     </div>
   );
 };

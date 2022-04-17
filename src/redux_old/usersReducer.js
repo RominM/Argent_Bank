@@ -20,6 +20,7 @@ export const deletedToken = {type: SIGN_OUT_ACTION}
 export function usersReducer(state = initialState, action) {
    switch (action.type) {
       case SIGN_IN_ACTION: 
+      console.log('SignIn Action');
       return produce(state, draftState => {
          draftState.token = action.payload
       })
@@ -33,34 +34,3 @@ export function usersReducer(state = initialState, action) {
    } 
 };
 
-
-/*
-const initialState = {
-   status: "void",
-   auth: {
-      token: null,
-   },
-   data: {
-      id: null,
-      lastName: null,
-      firstName: null,
-      email: null,
-      password: null,
-   },
-   error: null,
-};
-
-const AUTHORIZED = "user/authorized";
-const REJECTED = "user/rejected";
-
-export const usersReducer = (state = initialState, action) => {
-   switch (action.type){
-      case AUTHORIZED:
-         return state
-      case REJECTED:
-         return state
-      default:
-         return state
-   }  
-}
-*/

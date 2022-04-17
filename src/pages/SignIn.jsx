@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { saveToken } from '../redux_old/usersReducer';
 import { getToken } from '../service/service';
 
 const SignIn = () => {
-   // const refEmail = useRef();
-   // const refPassword = useRef();
-
    const [email, setEmail] = useState("");
    const [password, setPasseword] = useState("");
    const [remember, setRemember] = useState(false);
    const dispatch = useDispatch()
+   // const navigate = useNavigate();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       // GET TOKEN
       const result = await getToken(email, password)
       const token = result.data.body.token
+      dispatch(saveToken(token))
       console.log(token);
       // SEND ACTION TO REDUX
-      dispatch(saveToken(token))
-      return token
+      // token ?
+      // token && localStorage.setItem('user', token)
+      // navigate('/dashboard');
    }
 
    return (
@@ -41,7 +42,6 @@ const SignIn = () => {
                         id="username"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                     // ref={refEmail}
                      />
                   </div>
                   <div className="input-wrapper">
@@ -51,7 +51,6 @@ const SignIn = () => {
                         id="password"
                         value={password}
                         onChange={(e) => setPasseword(e.target.value)}
-                     // ref={refPassword}
                      />
                   </div>
                   <div className="input-remember">

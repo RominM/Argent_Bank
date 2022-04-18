@@ -9,6 +9,6 @@ export const getToken = (email, password) => {
 };
 
 // Requête pour récupérer le profil correspondant au token.
-export const getProfile = () => {
-   return axios.get("http://localhost:3001/api/v1/user/profile", {}, {})
-}
+// export const getProfile = () => {
+//    return axios.get("http://localhost:3001/api/v1/user/profile", {}, {})
+// }

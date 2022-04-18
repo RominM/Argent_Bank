@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 // Redux
 import { useDispatch } from 'react-redux';
-import { saveToken } from '../redux/usersReducer';
+import { saveToken } from '../redux/reducers/usersReducer';
 // Service
 import { getToken } from '../service/service';
 // Components
@@ -16,6 +16,7 @@ const SignIn = () => {
    const [email, setEmail] = useState("");
    const [password, setPasseword] = useState("");
    const [remember, setRemember] = useState(false);
+   const [error, setError] = useState(null);
    // TOOLS
    const dispatch = useDispatch()
    const navigate = useNavigate();
@@ -31,21 +32,16 @@ const SignIn = () => {
          dispatch(saveToken(token))
          setTimeout(() => {
             setLoading(false);
+            navigate('/dashboard');
          }, 1500);
-         navigate('/dashboard');
-      }  
+      }
       catch (err) {
-         alert('Nom d\'utilisateur ou Mot de passe incorrect')
+         setTimeout(() => {
+            setLoading(false);
+            setError(err)
+         }, 500);
       }
    }
-
-
-   // if (loading) {
-   //    return <Loader />;
-   // }
-   // if (!loading) {
-   //    return <Navigate to="not-found" />;
-   // }
 
    return (
       loading ?
@@ -58,6 +54,7 @@ const SignIn = () => {
                <section className="sign-in-content">
                   <i className="fa fa-user-circle sign-in-icon"></i>
                   <h1>Sign In</h1>
+                  {error && <span className='err-mes'>Something wrong here</span>}
                   <form onSubmit={e => handleSubmit(e)}>
                      <div className="input-wrapper">
                         <label htmlFor="username">Username</label>

@@ -1,13 +1,14 @@
+// React
 import React, { useState } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
-import Loader from '../components/Loader';
 import { useNavigate } from 'react-router-dom';
-import { saveToken } from '../redux_old/usersReducer';
-import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+// Redux
+import { useDispatch } from 'react-redux';
+import { saveToken } from '../redux/usersReducer';
+// Service
 import { getToken } from '../service/service';
+// Components
+import Loader from '../components/Loader';
 
 const SignIn = () => {
    //STATE
@@ -26,14 +27,13 @@ const SignIn = () => {
          setLoading(true)
          const result = await getToken(email, password)
          const token = result.data.body.token;
-         // setLoading(true)
          // SEND ACTION TO REDUX
          dispatch(saveToken(token))
-         navigate('/dashboard');
          setTimeout(() => {
             setLoading(false);
          }, 1500);
-      }
+         navigate('/dashboard');
+      }  
       catch (err) {
          alert('Nom d\'utilisateur ou Mot de passe incorrect')
       }

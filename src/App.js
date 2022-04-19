@@ -13,8 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // Style
 import './style/App.css';
 
-const App = () => {
-  
+const App = () => { 
   return (
     <div className="App">
       <Header />

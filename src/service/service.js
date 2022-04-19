@@ -8,7 +8,9 @@ export const getToken = (email, password) => {
    })
 };
 
-// Requête pour récupérer le profil correspondant au token.
-// export const getProfile = () => {
-//    return axios.get("http://localhost:3001/api/v1/user/profile", {}, {})
-// }
+// GET PROFIL
+export const getProfil = () => {
+   return axios.post("http://localhost:3001/api/v1/user/profile", {}, {
+      headers: {"Authorization": "Bearer " + localStorage.getItem('token')}
+   })
+}

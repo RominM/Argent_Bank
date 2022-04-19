@@ -1,23 +1,24 @@
+// React
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Service
 import { getProfil } from '../service/service';
 
-const Hello = () => {
+const Profil = () => {
 
-  const profilData = useSelector((state) => state.profile);
-  console.log(profilData);
+  const userData = useSelector((state) => state.profil);
+  console.log(userData);
 
   return (
     <div className="header">
       <h1>
         Welcome back
         <br />
-        {/* {user.name} */}
+        UserName
       </h1>
       <button className="edit-button">Edit Name</button>
     </div>
   );
 };
 
-export default Hello;
+export default Profil;

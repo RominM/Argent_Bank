@@ -1,18 +1,21 @@
+// React
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
 import { deletedToken } from '../../redux/reducers/usersReducer';
+// Assets
 import logo from './../../assets/img/argentBankLogo.png';
 
 const Header = () => {
   const dispatch = useDispatch()
   const tokenAccess = useSelector(state => state.token);
 
-  const handleLogout = () => {
+  const handleSignOut = () => {
     dispatch(deletedToken)
-    console.log('Handle Logout');
   }
-
+  // should be null after SignOut
+  console.log(tokenAccess);
   return (
     <header>
       <nav className="main-nav">
@@ -25,15 +28,21 @@ const Header = () => {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
-          <Link className="main-nav-item" to="/signIn">
-            <span className="fa fa-user-circle right"></span>
-            Sign In
-          </Link>
-          {tokenAccess &&
-            <Link className="main-nav-item" to="/" onClick={() => handleLogout()}>
-              <i className="fa fa-sign-out"></i>
-              Sign Out
-            </Link>}
+          {!tokenAccess ?
+            <Link className="main-nav-item" to="/signIn">
+              <span className="fa fa-user-circle right"></span>
+              &nbsp;Sign In
+            </Link> :
+            <div>
+              <Link className="main-nav-item" to="/signIn">
+                <span className="fa fa-user-circle right"></span>
+                &nbsp;UserName
+              </Link>
+              <Link className="main-nav-item" to="/" onClick={() => handleSignOut()}>
+                <i className="fa fa-sign-out"></i>
+                &nbsp;Sign Out
+              </Link>
+            </div>}
         </div>
       </nav>
     </header>

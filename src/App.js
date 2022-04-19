@@ -15,7 +15,7 @@ import './style/App.css';
 
 const App = () => { 
   return (
-    <div className="App">
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="*" element={<Error />}/>
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 };
 

@@ -21,11 +21,11 @@ const SignIn = () => {
    const dispatch = useDispatch()
    const navigate = useNavigate();
    // OnSubmit
-   const handleSubmit = async (e) => {
+   const handleSignIn = async (e) => {
       e.preventDefault();
       try {
-         // GET TOKEN
          setLoading(true)
+         // GET TOKEN
          const result = await getToken(email, password)
          const token = result.data.body.token;
          // SEND ACTION TO REDUX
@@ -55,7 +55,7 @@ const SignIn = () => {
                   <i className="fa fa-user-circle sign-in-icon"></i>
                   <h1>Sign In</h1>
                   {error && <span className='err-mes'>Something wrong here</span>}
-                  <form onSubmit={e => handleSubmit(e)}>
+                  <form onSubmit={e => handleSignIn(e)}>
                      <div className="input-wrapper">
                         <label htmlFor="username">Username</label>
                         <input

@@ -15,7 +15,7 @@ const Header = () => {
     dispatch(deletedToken)
   }
   // should be null after SignOut
-  console.log(tokenAccess);
+  console.log('Token : ' + tokenAccess);
   return (
     <header>
       <nav className="main-nav">

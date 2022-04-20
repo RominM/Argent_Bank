@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfil } from '../service/service';
 
 const Profil = () => {
-
   const userData = useSelector((state) => state.profil);
   console.log(userData);
+
+  const handleEdit = () => {
+
+  }
 
   return (
     <div className="header">
@@ -16,7 +19,7 @@ const Profil = () => {
         <br />
         UserName
       </h1>
-      <button className="edit-button">Edit Name</button>
+      <button className="edit-button" onClick={handleEdit}>Edit Name</button>
     </div>
   );
 };

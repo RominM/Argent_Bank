@@ -5,3 +5,7 @@ import { usersReducer } from "../reducers/usersReducer";
 const reduxToolPlugin =  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 // STORE
 export const store = createStore(usersReducer, reduxToolPlugin);
+
+/**
+ * Le store "centralise" les differents Reducer
+ */

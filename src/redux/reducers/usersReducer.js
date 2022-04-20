@@ -1,13 +1,14 @@
 import { produce } from "immer";
 import { SIGN_IN_ACTION, SIGN_OUT_ACTION } from "../actions/actions";
 
+// Initialisation
 const initialState = {
    token: null
 };
 
 // To dispatch
 export const saveToken = (token) => ({type: SIGN_IN_ACTION, payload: token}); // return action
-export const deletedToken = {type: SIGN_OUT_ACTION}
+export const deletedToken = {type: SIGN_OUT_ACTION};
 
 // REDUCER(STATE, ACTION) Actions will change State
 export function usersReducer(state = initialState, action) {
@@ -25,4 +26,3 @@ export function usersReducer(state = initialState, action) {
       return state
    } 
 };
-

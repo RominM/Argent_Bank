@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const Amount = (props) => {
+const Account = (props) => {
    return (
       <section className="account">
          <div className="account-content-wrapper">
@@ -17,4 +17,4 @@ const Amount = (props) => {
       </section>)
 }
 
-export default Amount
+export default Account

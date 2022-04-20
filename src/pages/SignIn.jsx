@@ -10,6 +10,12 @@ import { getToken } from '../service/service';
 // Components
 import Loader from '../components/Loader';
 
+/**
+ * Render the Login page of the application
+ * @function Login
+ * @returns { ReactElement }
+ */
+
 const SignIn = () => {
    //STATE
    const [loading, setLoading] = useState(false)

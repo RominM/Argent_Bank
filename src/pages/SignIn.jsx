@@ -85,8 +85,6 @@ const SignIn = () => {
                         <input type="checkbox" id="remember-me" value={remember} onChange={(e) => setRemember(e.target.value)}
                         />
                      </div>
-                     {/* <Link to="/dashboard" className="sign-in-button">Sign In</Link> */}
-                     {/* SHOULD BE THE BUTTON BELOW*/}
                      <button className="sign-in-button">Sign In</button>
                   </form>
                </section>

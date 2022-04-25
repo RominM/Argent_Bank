@@ -10,7 +10,7 @@ const Dashboard = () => {
    const tokenAccess = useSelector(state => state.token);
 
    return (
-      tokenAccess &&
+      tokenAccess && 
       <HelmetProvider>
          <Helmet>
             <title>Argent Bank - Dashboard</title>

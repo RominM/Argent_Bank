@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { SIGN_IN_ACTION, SIGN_OUT_ACTION } from "../actions/actions";
+import { SIGN_IN_ACTION, SIGN_OUT_ACTION,  } from "../actions/actions";
 
 // Initialisation
 const initialState = {
@@ -22,6 +22,7 @@ export function usersReducer(state = initialState, action) {
             ...state,
             token: null
          }
+
       default:
       return state
    } 

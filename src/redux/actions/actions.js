@@ -2,3 +2,5 @@
 export const SIGN_IN_ACTION = "SIGN_IN_ACTION";
 // ACTION TO DELET TOKEN
 export const SIGN_OUT_ACTION = "SIGN_OUT_ACTION";
+// ACTION ...
+export const UPDATE_TOKEN = "UPDATE_TOKEN";

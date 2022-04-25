@@ -9,6 +9,19 @@ export const getToken = (email, password) => {
 };
 
 // GET PROFIL
-export const getProfile = () => {
-   return axios.post("http://localhost:3001/api/v1/user/profile")
+export const getProfile = (token) => {
+   const bodyParam = {
+      key: "value"
+   };
+
+   const config = {
+      Headers: {authorization: `Bearer ${token}`}
+   };
+   
+   return axios.post("http://localhost:3001/api/v1/user/profile",
+      bodyParam,
+      config
+   )
+   .then(console.log)
+   .catch(console.log)
 }

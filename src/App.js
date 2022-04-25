@@ -15,6 +15,9 @@ const App = () => {
   //TODO:gestion de la route protégé
   const tokenAccess = useSelector((state) => state.token);
 
+  // should be null before SignIn & after SignOut
+  console.log('token : ' + tokenAccess);
+
   return (
     <>
       <Header />

@@ -7,13 +7,14 @@ const initialState = {
 };
 
 // To dispatch
-export const saveToken = (token) => ({ type: SIGN_IN_ACTION, payload: token }); // return action
+export const saveToken = (token) => ({ type: SIGN_IN_ACTION, payload: token });
 export const deletedToken = { type: SIGN_OUT_ACTION };
 
 // REDUCER(STATE, ACTION) Actions will change State
 export function usersReducer(state = initialState, action) {
   switch (action.type) {
     case SIGN_IN_ACTION:
+      console.log('SignIn Action');
       return produce(state, (draftState) => {
         draftState.token = action.payload;
       });

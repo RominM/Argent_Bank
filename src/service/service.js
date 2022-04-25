@@ -1,14 +1,21 @@
 import axios from 'axios';
 
+const baseURL = 'http://localhost:3001/api/v1/user';
+
 // GET TOKEN
-export const getToken = (email, password) => {
-  return axios.post('http://localhost:3001/api/v1/user/login', {
-    email: email,
-    password: password,
-  });
+export const getToken = async (email, password) => {
+  console.log(email + ' ' + password);
+  return await axios
+    .post(baseURL + '/login', {
+      email,
+      password,
+    })
+    .then(console.log)
+    .catch(console.log);
 };
 
 // GET PROFIL
+/*
 export const getProfile = (token) => {
   const bodyParam = {
     key: 'value',
@@ -19,7 +26,8 @@ export const getProfile = (token) => {
   };
 
   return axios
-    .post('http://localhost:3001/api/v1/user/profile', bodyParam, config)
+    .post(baseURL + '/profile', bodyParam, config)
     .then(console.log)
     .catch(console.log);
 };
+*/

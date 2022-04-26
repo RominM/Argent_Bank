@@ -4,14 +4,19 @@ const baseURL = 'http://localhost:3001/api/v1/user';
 
 // GET TOKEN
 export const getToken = async (email, password) => {
-  console.log(email + ' ' + password);
+  // eslint-disable-next-line no-useless-concat
+  console.log('Email : ' + email + ' /' + 'Password : ' + password);
   return await axios
     .post(baseURL + '/login', {
-      email,
-      password,
+      email: email,
+      password: password,
     })
-    .then(console.log)
-    .catch(console.log);
+    .then((response) => {
+      return response.data.body;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // GET PROFIL

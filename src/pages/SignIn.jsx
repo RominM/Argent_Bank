@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveToken } from '../redux/reducers/usersReducer';
 // Service
 import { getToken } from '../service/service';
+import { checkCredentials } from '../redux/actions/actions';
 // Components
 import Loader from '../components/Loader';
 
@@ -17,6 +18,8 @@ import Loader from '../components/Loader';
  */
 
 const SignIn = () => {
+
+  const store = useSelector(state => state);
   //STATE
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -27,35 +30,25 @@ const SignIn = () => {
   // TOOLS
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const rememberMe = true;
 
   // OnSubmit
   const handleSignIn = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      // GET TOKEN
-      const result = await getToken(email, password);
-      const token = result.data.body.token;
-      console.log(token);
-
-      // SEND ACTION TO REDUX
-      dispatch(saveToken(token));
-
-      setTimeout(() => {
-        setLoading(false);
-        navigate('/dashboard');
-      }, 1500);
-    } catch (err) {
-      setTimeout(() => {
-        setLoading(false);
-        setError(err);
-      }, 500);
-    }
+    dispatch(checkCredentials(email, password, rememberMe));
   };
 
-  return loading ? (
-    <Loader />
-  ) : (
+   // GET TOKEN
+   if (store.currentState === "loading") setLoading(false);
+   if (store.currentState === "logged") navigate('/dashboard');
+   
+
+
+
+
+  if (loading) return (<Loader />);
+
+  return (
     <HelmetProvider>
       <Helmet>
         <title>Argent Bank - Sign In</title>

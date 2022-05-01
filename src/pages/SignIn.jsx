@@ -18,8 +18,7 @@ import Loader from '../components/Loader';
  */
 
 const SignIn = () => {
-
-  const store = useSelector(state => state);
+  const store = useSelector((state) => state);
   //STATE
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -33,20 +32,17 @@ const SignIn = () => {
   const rememberMe = true;
 
   // OnSubmit
-  const handleSignIn = async (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
+    // run checkCredentials action
     dispatch(checkCredentials(email, password, rememberMe));
   };
 
-   // GET TOKEN
-   if (store.currentState === "loading") setLoading(false);
-   if (store.currentState === "logged") navigate('/dashboard');
-   
+  // State
+  if (store.currentState === 'loading') setLoading(false);
+  if (store.currentState === 'logged') navigate('/dashboard');
 
-
-
-
-  if (loading) return (<Loader />);
+  if (loading) return <Loader />;
 
   return (
     <HelmetProvider>

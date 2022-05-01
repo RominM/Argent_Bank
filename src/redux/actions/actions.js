@@ -1,45 +1,42 @@
 import axios from 'axios';
-// ACTION TO SAVE TOKEN IN REDUX #1
-const SIGN_IN_ACTION = "SIGN_IN_ACTION";
-// ACTION TO DELET TOKEN
-const SIGN_OUT_ACTION = "SIGN_OUT_ACTION";
-// ACTION ...
-const UPDATE_TOKEN = "UPDATE_TOKEN";
-
-
+// Default
 axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 
-// GET TOKEN
+// ACTIONS CREATOR
+const LOGOUT_ACTION = 'LOGOUT_ACTION';
+const LOGIN_SUCEED = 'LOGIN_SUCEED';
+const LOGIN_FAILED = 'LOGIN_FAILED';
+// Handler
 const checkCredentials = (email, password, rememberMe) => {
-   return async (dispatch){
-      // eslint-disable-next-line no-useless-concat
-   console.log('Email : ' + email + ' /' + 'Password : ' + password);
-   try{
+  return async (dispatch) => {
+    try {
+      // Request POST from api to get token
       const response = await axios.post('/login', {
-         email: email,
-         password: password,
+        email: email,
+        password: password,
       });
-      if (rememberMe) localStorage.setItem("token", response.data.token);
-      else sessionStorage.setItem("token", response.data.token)
-      axios.defaults.headers.common = {'Authorization': `bearer ${response.data.token}`}
-      
-     dispatch("loginSuceed", {token: response.data.token})
-   }
-   catch(err) {
+      // put the token in localStorage...
+      if (rememberMe) localStorage.setItem('token', response.data.token);
+      //...or in SessionStorage
+      else sessionStorage.setItem('token', response.data.token);
+      //TODO: have to defined the "axios.defaults.headers.common" concept
+      axios.defaults.headers.common = {
+        Authorization: `bearer ${response.data.token}`,
+      };
+      //TODO: Why is dealt with here shouldn't in other actions ?
+      // if token then will be logged
+      dispatch(LOGIN_SUCEED, { token: response.data.token });
+      // Else catch error and login is failed
+    } catch (err) {
       console.error(err);
-    dispatch("loginFailed")
-
-   }
-   
+      dispatch(LOGIN_FAILED);
+    }
+  };
 };
 
-
-
-
-// GET PROFIL
 export const getProfil = () => {
   return axios.post(
-    baseURL + '/profile',
+    '/profile',
     {},
     {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
@@ -50,7 +47,7 @@ export const getProfil = () => {
 // UPDATE PROFIL
 export const updateProfil = (firstName, lastName) => {
   return axios.put(
-    baseURL + '/profile',
+    '/profile',
     {
       firstName: firstName,
       lastName: lastName,
@@ -60,15 +57,5 @@ export const updateProfil = (firstName, lastName) => {
     }
   );
 };
-*/
 
-
-
-
-
-export {
-   SIGN_IN_ACTION,
-   SIGN_OUT_ACTION,
-   UPDATE_TOKEN,
-   checkCredentials
-}
+export { LOGIN_SUCEED, LOGIN_FAILED, LOGOUT_ACTION, checkCredentials };

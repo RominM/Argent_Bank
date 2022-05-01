@@ -1,33 +1,31 @@
-import { produce } from 'immer';
-import { SIGN_IN_ACTION, SIGN_OUT_ACTION } from '../actions/actions';
-
 import { initialState } from '../store/store';
+// Types
+import { LOGIN_FAILED, LOGIN_SUCEED, LOGOUT_ACTION } from '../actions/actions';
 
 // To dispatch
-export const saveToken = (token) => ({ type: SIGN_IN_ACTION, payload: token });
-export const deletedToken = { type: SIGN_OUT_ACTION };
+export const deletedToken = { type: LOGOUT_ACTION };
+export const loginSuceed = { type: LOGIN_SUCEED };
+export const loginFailed = { type: LOGIN_FAILED };
 
-// REDUCER(STATE, ACTION) Actions will change State
+// REDUCER(PREVSTATE, ACTION) => NEWSTATE
 export function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case "checkCredentials" : 
-    return {
-      ...state,
-      currentState: "loading",
-    };
-    case "loginSuceed" : 
+    // if checkCredentials (if "handleSignIn" is clicked) ...
+    case 'checkCredentials': // TODO How is possible ?
+      return {
+        //...change currentState by 'loading'
+        ...state,
+        currentState: 'loading',
+      };
+    // if dispatch(LOGIN_SUCEED) from the checkCredentials action
+    case LOGIN_SUCEED:
       return {
         ...state,
-        loggedIn:true,
-        currentState: "logged",
-        token : action.payload.token
-      }
-    case SIGN_IN_ACTION:
-      console.log('SignIn Action');
-      return produce(state, (draftState) => {
-        draftState.token = action.payload;
-      });
-    case SIGN_OUT_ACTION:
+        loggedIn: true,
+        currentState: 'logged',
+        token: action.payload.token,
+      };
+    case LOGOUT_ACTION:
       return initialState;
 
     default:

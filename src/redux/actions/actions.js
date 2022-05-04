@@ -1,37 +1,78 @@
 import axios from 'axios';
+import {
+   LOGIN_SUCEED,
+   LOGIN_FAILED,
+   LOGOUT_ACTION,
+   USER_PROFILE,
+} from './types';
 // Default
 axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 
-// ACTIONS CREATOR
-const LOGOUT_ACTION = 'LOGOUT_ACTION';
-const LOGIN_SUCEED = 'LOGIN_SUCEED';
-const LOGIN_FAILED = 'LOGIN_FAILED';
+const loginSuceed = () => {
+   return { type: LOGIN_SUCEED };
+};
+
 // Handler
 const checkCredentials = (email, password, rememberMe) => {
-  return async (dispatch) => {
-    try {
-      // Request POST from api to get token
-      const response = await axios.post('/login', {
-        email: email,
-        password: password,
-      });
-      // put the token in localStorage...
-      if (rememberMe) localStorage.setItem('token', response.data.token);
-      //...or in SessionStorage
-      else sessionStorage.setItem('token', response.data.token);
-      //TODO: have to defined the "axios.defaults.headers.common" concept
-      axios.defaults.headers.common = {
-        Authorization: `bearer ${response.data.token}`,
-      };
-      //TODO: Why is dealt with here shouldn't in other actions ?
-      // if token then will be logged
-      dispatch(LOGIN_SUCEED, { token: response.data.token });
-      // Else catch error and login is failed
-    } catch (err) {
-      console.error(err);
-      dispatch(LOGIN_FAILED);
-    }
-  };
+   return async (dispatch) => {
+      try {
+         const response = await axios.post('/login', {
+            email: email,
+            password: password,
+         });
+
+         const token = response.data.body.token;
+         console.log('token : ' + token);
+
+         if (rememberMe && token) {
+            localStorage.setItem('token', token);
+         } else {
+            sessionStorage.setItem('token', token);
+         }
+
+         axios.defaults.headers.common = {
+            Authorization: `bearer ${token}`,
+         };
+
+         console.log(loginSuceed(), 'login success');
+         // dispatch(loginSuceed(), token);
+         // const user = userData(token);
+         const userData = (async (token) => {
+            console.log('here');
+            await axios
+               .post(
+                  '/profile',
+                  {},
+                  {
+                     headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem(token),
+                     },
+                  }
+               )
+               .then((response) => {
+                  console.log(response);
+                  console.log(response);
+                  return response.data.body;
+               });
+         })();
+         // userData(token);
+      } catch (err) {
+         console.error(err);
+         dispatch(LOGIN_FAILED);
+      }
+   };
+};
+/*
+const userData = async (token) => {
+   await axios.post(
+      '/profile',
+      {},
+      {
+         headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+         },
+      }
+   );
 };
 
 export const getProfil = () => {
@@ -57,5 +98,12 @@ export const updateProfil = (firstName, lastName) => {
     }
   );
 };
-
-export { LOGIN_SUCEED, LOGIN_FAILED, LOGOUT_ACTION, checkCredentials };
+*/
+export {
+   checkCredentials,
+   // CHECK_CREDENTIALS,
+   LOGIN_SUCEED,
+   LOGIN_FAILED,
+   LOGOUT_ACTION,
+   USER_PROFILE,
+};

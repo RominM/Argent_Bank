@@ -1,0 +1,7 @@
+export const LOADING = 'LOADING';
+export const LOGIN_SUCEED = 'LOGIN_SUCEED';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOGOUT_ACTION = 'LOGOUT_ACTION';
+export const USER_PROFILE = 'USER_PROFILE';
+
+// export const CHECK_CREDENTIALS = 'CHECK_CREDENTIALS';

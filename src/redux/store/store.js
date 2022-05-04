@@ -1,43 +1,30 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import { usersReducer } from '../reducers/usersReducer';
 
-// Initialisation
-const initialState = {
-  token: null,
-  loggedIn: false,
-  firstName: '',
-  lastName: '',
-  currentState: '',
-};
-// We verify is token already exist
-function hasToken() {
-  // token = token in local || session Storage || is null
-  const token =
-    localStorage.getItem('token') || sessionStorage.getItem('token') || null;
-  // but if is null return false
-  if (token === null) return false;
-  // if not put the token in 'header' then return true
-  axios.defaults.headers.common = { Authorization: `bearer ${token}` };
-  return true;
-}
-
-// const initState = { ...initialState, loggedIn: hasToken() };
 const middleThunk = [thunk];
+const initialState = {
+   token: null,
+   loggedIn: false,
+   user: {},
+   currentState: '',
+};
 
-// MiddleWare extension
-// const reduxDevtools =
-//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-//   window.__REDUX_DEVTOOLS_EXTENSION__();
+function hasToken() {
+   const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token') || null;
+   if (token === null) return false;
+   axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+   return true;
+}
+const initState = { ...initialState, loggedIn: hasToken() };
 
-// STORE
 const store = createStore(
-  usersReducer,
-  // initState,
-  // compose(
-  applyMiddleware(...middleThunk)
-  // , reduxDevtools)
+   usersReducer,
+   initState,
+   composeWithDevTools(applyMiddleware(...middleThunk))
 );
 
 export { store, initialState };

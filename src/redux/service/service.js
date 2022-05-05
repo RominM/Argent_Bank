@@ -1,7 +1,8 @@
 import axios from 'axios';
-
+//TODO handle every call api from here
 class Service {
    constructor() {
+      // not shure of this
       axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
    }
    async getToken(email, password) {

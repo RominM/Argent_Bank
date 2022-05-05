@@ -16,6 +16,7 @@ export function usersReducer(state = initialState, action) {
    const { payload } = action;
    switch (action.type) {
       // if checkCredentials (if "handleSignIn" is clicked) ...
+      //TODO Why 'checkCredential' could be an action ? It doesn't work like this
       // case 'checkCredentials':
       //    return {
       //       ...state,

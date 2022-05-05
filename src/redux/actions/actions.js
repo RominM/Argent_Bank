@@ -14,6 +14,7 @@ axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 const checkCredentials = (email, password, remember) => {
    return async (dispatch) => {
       dispatch({
+         //TODO Have to clean "function().type"
          type: loading().type,
          payload: true,
       });
@@ -52,6 +53,7 @@ const checkCredentials = (email, password, remember) => {
 };
 
 const userData = (token, dispatch) => {
+   // TODO have to defined this concept without "/profile"
    const user = (axios.defaults.headers.common = {
       Authorization: `bearer ${token}`,
    });

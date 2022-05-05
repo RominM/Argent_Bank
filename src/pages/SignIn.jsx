@@ -17,6 +17,7 @@ import Loader from '../components/Loader';
 const SignIn = () => {
    const store = useSelector((state) => state);
    //STATE
+   //TODO handle every state in Redux
    const [loading, setLoading] = useState(false);
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');

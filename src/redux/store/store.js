@@ -10,6 +10,7 @@ const initialState = {
    loggedIn: false,
    user: {},
    currentState: '',
+   loader: false,
 };
 
 function hasToken() {

@@ -1,7 +1,27 @@
-export const LOADING = 'LOADING';
-export const LOGIN_SUCEED = 'LOGIN_SUCEED';
-export const LOGIN_FAILED = 'LOGIN_FAILED';
-export const LOGOUT_ACTION = 'LOGOUT_ACTION';
-export const USER_PROFILE = 'USER_PROFILE';
+const LOADING = { type: 'LOADING' };
+const LOGIN_SUCEED = { type: 'LOGIN_SUCEED' };
+const LOGIN_FAILED = { type: 'LOGIN_FAILED' };
+const LOGOUT = { type: 'LOGOUT' };
+const USER_PROFILE = { type: 'USER_PROFILE' };
+
+export const loading = () => {
+   return LOADING;
+};
+
+export const logginSuceed = () => {
+   return LOGIN_SUCEED;
+};
+
+export const logginFailure = () => {
+   return LOGIN_FAILED;
+};
+
+export const logout = () => {
+   return LOGOUT;
+};
+
+export const userData = () => {
+   return USER_PROFILE;
+};
 
 // export const CHECK_CREDENTIALS = 'CHECK_CREDENTIALS';

@@ -2,16 +2,17 @@ import { initialState } from '../store/store';
 // Types
 import {
    // CHECK_CREDENTIALS,
-   LOGIN_FAILED,
-   LOGIN_SUCEED,
-   LOGOUT_ACTION,
-   USER_PROFIL,
+   loading,
+   logginSuceed,
+   logginFailure,
+   logout,
+   userData,
 } from '../actions/actions';
 
 // To dispatch
-export const deletedToken = { type: LOGOUT_ACTION };
+export const deletedToken = logout();
 // export const loginSuceed = { type: LOGIN_SUCEED };
-export const loginFailed = { type: LOGIN_FAILED };
+export const loginFailed = logginFailure();
 
 // REDUCER(PREVSTATE, ACTION) => NEWSTATE
 export function usersReducer(state = initialState, action) {
@@ -19,12 +20,11 @@ export function usersReducer(state = initialState, action) {
       // if checkCredentials (if "handleSignIn" is clicked) ...
       case 'checkCredentials':
          return {
-            //...change currentState by 'loading'
             ...state,
             currentState: 'loading',
          };
       // if dispatch(LOGIN_SUCEED) from the checkCredentials action
-      case LOGIN_SUCEED:
+      case logginSuceed:
          console.log();
          return {
             ...state,
@@ -32,7 +32,7 @@ export function usersReducer(state = initialState, action) {
             currentState: 'logged',
             token: action.payload.token,
          };
-      case LOGOUT_ACTION:
+      case logout:
          return initialState;
 
       default:

@@ -26,13 +26,12 @@ const SignIn = () => {
    // TOOLS
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   const rememberMe = true;
+   // const rememberMe = true;
 
    // OnSubmit
    const handleSignIn = (e) => {
       e.preventDefault();
-      // run checkCredentials action
-      dispatch(checkCredentials(email, password, rememberMe));
+      dispatch(checkCredentials(email, password, remember));
    };
 
    // State
@@ -75,8 +74,7 @@ const SignIn = () => {
                      <input
                         type="checkbox"
                         id="remember-me"
-                        value={remember}
-                        onChange={(e) => setRemember(e.target.value)}
+                        onChange={(e) => setRemember(!remember)}
                      />
                   </div>
                   <button className="sign-in-button">Sign In</button>

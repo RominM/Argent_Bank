@@ -1,38 +1,55 @@
 import { initialState } from '../store/store';
-// Types
+// Actions
 import {
-   // CHECK_CREDENTIALS,
    loading,
    logginSuceed,
    logginFailure,
    logout,
-   userData,
+   userProfile,
 } from '../actions/actions';
 
 // To dispatch
-export const deletedToken = logout();
-// export const loginSuceed = { type: LOGIN_SUCEED };
-export const loginFailed = logginFailure();
+export const deletedToken = logout().type;
 
 // REDUCER(PREVSTATE, ACTION) => NEWSTATE
 export function usersReducer(state = initialState, action) {
+   const { payload } = action;
    switch (action.type) {
       // if checkCredentials (if "handleSignIn" is clicked) ...
-      case 'checkCredentials':
+      // case 'checkCredentials':
+      //    return {
+      //       ...state,
+      //       currentState: 'loading',
+      //    };
+      case loading().type:
          return {
             ...state,
-            currentState: 'loading',
+            loader: payload,
          };
-      // if dispatch(LOGIN_SUCEED) from the checkCredentials action
-      case logginSuceed:
-         console.log();
+      case logginSuceed().type:
          return {
             ...state,
             loggedIn: true,
             currentState: 'logged',
             token: action.payload.token,
+            loader: payload,
          };
-      case logout:
+      case logginFailure().type:
+         return {
+            ...state,
+            error: true,
+            loader: false,
+         };
+      case userProfile().type:
+         return {
+            ...state,
+            user: {
+               // user.firstname,
+               // user.lastname,
+            },
+            loader: false,
+         };
+      case logout().type:
          return initialState;
 
       default:

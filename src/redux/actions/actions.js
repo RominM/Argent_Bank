@@ -1,10 +1,11 @@
 import axios from 'axios';
+// import Service from '../service/service';
 import {
    loading,
    logginSuceed,
    logginFailure,
    logout,
-   userData,
+   userProfile,
 } from './types';
 // Default
 axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
@@ -12,7 +13,10 @@ axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 // Handler
 const checkCredentials = (email, password, remember) => {
    return async (dispatch) => {
-      dispatch(loading());
+      dispatch({
+         type: loading().type,
+         payload: true,
+      });
       try {
          const response = await axios.post('/login', {
             email: email,
@@ -20,32 +24,54 @@ const checkCredentials = (email, password, remember) => {
          });
 
          const token = response.data.body.token;
-         console.log('token : ' + token);
 
-         if (token) {
-            dispatch(logginSuceed());
-            userProfiles(token, dispatch);
+         if ((remember && token) || token) {
+            dispatch({
+               type: logginSuceed().type,
+               payload: { token },
+               loader: true,
+            });
+            userData(token, dispatch);
+            localStorage.setItem('token', token);
+            sessionStorage.setItem('token', token);
             if (remember) {
                console.log('remember is checked');
-               localStorage.setItem('token', token);
-            } else {
-               sessionStorage.setItem('token', token);
             }
+         } else {
+            localStorage.removeItem('token', token);
+            sessionStorage.removeItem('token', token);
          }
       } catch (err) {
          console.error(err);
-         dispatch(logginFailure());
+         dispatch({
+            type: logginFailure().type,
+            payload: true,
+         });
       }
    };
 };
 
-const userProfiles = (token, dispatch) => {
-   console.log('before');
-   axios.defaults.headers.common = {
+const userData = (token, dispatch) => {
+   const user = (axios.defaults.headers.common = {
       Authorization: `bearer ${token}`,
-   };
-   dispatch(userData());
+   });
+   dispatch({
+      type: userProfile().type,
+      payload: { user },
+   });
 };
+
+/*
+//TODO have to make a function to keep user logged even though refresh
+const rememberUser = () => {
+   if (token.localStorage.getItem) {
+      dispatch({
+         type: rememberUser().type,
+         payload: { token },
+      });
+   }
+};
+*/
 
 export {
    checkCredentials,
@@ -53,5 +79,5 @@ export {
    logginSuceed,
    logginFailure,
    logout,
-   userData,
+   userProfile,
 };

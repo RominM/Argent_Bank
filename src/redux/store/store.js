@@ -11,6 +11,7 @@ const initialState = {
    user: {},
    currentState: '',
    loader: false,
+   error: false,
 };
 
 function hasToken() {

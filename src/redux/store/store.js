@@ -8,7 +8,7 @@ const middleThunk = [thunk];
 const initialState = {
    token: null,
    loggedIn: false,
-   user: {},
+   user: null,
    currentState: '',
    loader: false,
    error: false,

@@ -44,10 +44,7 @@ export function usersReducer(state = initialState, action) {
       case userProfile().type:
          return {
             ...state,
-            user: {
-               // user.firstname,
-               // user.lastname,
-            },
+            user: payload.user,
             loader: false,
          };
       case logout().type:

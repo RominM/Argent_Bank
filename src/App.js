@@ -10,13 +10,10 @@ import Error from './pages/Error';
 // Components
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
+import { tokenSelect } from './redux/selectors/selectors';
 
 const App = () => {
-   //TODO:gestion de la route protégé
-   const tokenAccess = useSelector((state) => state.token);
-
-   // should be null before SignIn & after SignOut
-   console.log('token : ' + tokenAccess);
+   const tokenAccess = useSelector(tokenSelect);
 
    return (
       <>

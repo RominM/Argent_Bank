@@ -15,7 +15,7 @@ const Header = () => {
    const userAccess = useSelector(userSelect);
 
    const handleSignOut = () => {
-      dispatch(deletedToken);
+      dispatch('LOGOUT_ACTION');
    };
 
    return (
@@ -30,14 +30,14 @@ const Header = () => {
                <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
-               {!tokenAccess ? (
+               {tokenAccess ? (
                   <Link className="main-nav-item" to="/signIn">
                      <span className="fa fa-user-circle right"></span>
                      &nbsp;Sign In
                   </Link>
                ) : (
                   <div>
-                     <Link className="main-nav-item" to="/signIn">
+                     <Link className="main-nav-item" to="/dashboard">
                         <span className="fa fa-user-circle right"></span>
                         &nbsp;Username
                         {/* &nbsp;{userAccess.firstName}

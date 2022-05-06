@@ -1,33 +1,27 @@
+/**
+ * @typedef {import("../actions/actions").actionsTypes} actionsTypes
+ */
 import { initialState } from '../store/store';
-// Actions
-import {
-   loading,
-   logginSuceed,
-   logginFailure,
-   logout,
-   userProfile,
-} from '../actions/actions';
+import { clearStorage } from '../../service/storage';
 
-// To dispatch
-export const deletedToken = logout().type;
-
-// REDUCER(PREVSTATE, ACTION) => NEWSTATE
+/**
+ *
+ * @param {Object} state
+ * @param {Object} action
+ * @param {Object} action.payload
+ * @param {actionsTypes} action.type
+ * @returns
+ */
 export function usersReducer(state = initialState, action) {
    const { payload } = action;
    switch (action.type) {
-      // if checkCredentials (if "handleSignIn" is clicked) ...
-      //TODO Why 'checkCredential' could be an action ? It doesn't work like this
-      // case 'checkCredentials':
-      //    return {
-      //       ...state,
-      //       currentState: 'loading',
-      //    };
-      case loading().type:
+      case 'LOADING_IN_PROGRESS':
          return {
             ...state,
+            currentState: 'loading',
             loader: payload,
          };
-      case logginSuceed().type:
+      case 'LOGIN_SUCEED':
          return {
             ...state,
             loggedIn: true,
@@ -35,19 +29,21 @@ export function usersReducer(state = initialState, action) {
             token: action.payload.token,
             loader: payload,
          };
-      case logginFailure().type:
+      case 'LOGIN_FAILED':
          return {
             ...state,
             error: true,
             loader: false,
          };
-      case userProfile().type:
+      case 'USER_PROFILE':
          return {
             ...state,
             user: payload.user,
             loader: false,
          };
-      case logout().type:
+      case 'LOGOUT_ACTION':
+         clearStorage();
+         console.log('logout');
          return initialState;
 
       default:

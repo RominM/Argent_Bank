@@ -14,14 +14,15 @@ const initialState = {
    error: false,
 };
 
-function hasToken() {
+function setInitialState() {
    const token =
       localStorage.getItem('token') || sessionStorage.getItem('token') || null;
-   if (token === null) return false;
+   if (token === null) return initialState;
    axios.defaults.headers.common = { Authorization: `bearer ${token}` };
-   return true;
+   return { ...initialState, loggedIn: true, token };
 }
-const initState = { ...initialState, loggedIn: hasToken() };
+const initState = setInitialState();
+console.log(initState);
 
 const store = createStore(
    usersReducer,

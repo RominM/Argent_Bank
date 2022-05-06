@@ -14,6 +14,7 @@ import { tokenSelect } from './redux/selectors/selectors';
 
 const App = () => {
    const tokenAccess = useSelector(tokenSelect);
+   console.log('tokenAccess', tokenAccess);
 
    return (
       <>
@@ -24,7 +25,7 @@ const App = () => {
                path="/dashboard"
                element={tokenAccess ? <Dashboard /> : <SignIn />}
             />
-            <Route path="/signIn" element={<SignIn />} />
+            {/* <Route path="/signIn" element={<SignIn />} /> */}
             <Route path="*" element={<Error />} />
          </Routes>
          <Footer />

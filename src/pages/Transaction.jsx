@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import DataLine from '../components/DataLine';
+import TransTitle from '../components/TransTitle';
 
 const Transaction = () => {
    return (

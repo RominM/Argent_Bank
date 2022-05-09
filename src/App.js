@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
+import Transaction from './pages/Transaction';
 import Error from './pages/Error';
 // Components
 import Header from './components/Layout/Header';
@@ -30,6 +31,10 @@ const App = () => {
                }
             />
             <Route path="/signIn" element={<SignIn />} />
+            <Route
+               path={store.token && '/transactions'}
+               element={<Transaction />}
+            />
             <Route path="*" element={<Error />} />
          </Routes>
          <Footer />

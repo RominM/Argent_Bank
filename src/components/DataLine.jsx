@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import down from './../assets/down-chevron.png';
+import down from './../assets/img/down-chevron.png';
 import up from './../assets/img/up-chevron.png';
 import pencil from './../assets/img/pencil.png';
 

@@ -7,9 +7,9 @@ const saveLocal = (token, rememberMe) => {
    sessionStorage.setItem('token', token);
 };
 // CLEAR
-const clearStorage = () => {
-   localStorage.clear();
-   sessionStorage.clear();
+const clearStorage = (token) => {
+   localStorage.removeItem('token', token);
+   sessionStorage.removeItem('token', token);
 };
 
 export { clearStorage, saveLocal };

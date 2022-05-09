@@ -10,7 +10,7 @@ async function getToken(email, password) {
    });
    return response.data.body.token;
 }
-
+/*
 async function userData() {
    const response = await axios.post('/profile');
    return response.data.body;
@@ -21,5 +21,23 @@ const setBearer = (token) => {
       Authorization: `bearer ${token}`,
    };
 };
+*/
 
-export { getToken, userData, setBearer };
+async function userData(token) {
+   return await axios
+      .post(
+         'http://localhost:3001/api/v1/user/profile',
+         {},
+         {
+            headers: {
+               Authorization: 'Bearer' + token,
+            },
+         }
+      )
+      .then((response) => {
+         console.log(response);
+         return response.data.body;
+      })
+      .catch((error) => console.log(error));
+}
+export { getToken, userData };

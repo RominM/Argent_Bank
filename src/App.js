@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // Pages
 import Home from './pages/Home';
@@ -10,11 +10,9 @@ import Error from './pages/Error';
 // Components
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
-import { tokenSelect } from './redux/selectors/selectors';
 
 const App = () => {
-   const tokenAccess = useSelector(tokenSelect);
-   console.log('tokenAccess', tokenAccess);
+   const store = useSelector((state) => state);
 
    return (
       <>
@@ -23,9 +21,15 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route
                path="/dashboard"
-               element={tokenAccess ? <Dashboard /> : <SignIn />}
+               element={
+                  store.token ? (
+                     <Dashboard />
+                  ) : (
+                     <Navigate to="/signIn" replace />
+                  )
+               }
             />
-            {/* <Route path="/signIn" element={<SignIn />} /> */}
+            <Route path="/signIn" element={<SignIn />} />
             <Route path="*" element={<Error />} />
          </Routes>
          <Footer />

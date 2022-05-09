@@ -27,13 +27,14 @@ export function usersReducer(state = initialState, action) {
             loggedIn: true,
             currentState: 'logged',
             token: action.payload.token,
-            loader: payload,
+            loader: false,
          };
       case 'LOGIN_FAILED':
          return {
             ...state,
             error: true,
             loader: false,
+            currentState: 'failed',
          };
       case 'USER_PROFILE':
          return {
@@ -43,7 +44,6 @@ export function usersReducer(state = initialState, action) {
          };
       case 'LOGOUT_ACTION':
          clearStorage();
-         console.log('logout');
          return initialState;
 
       default:

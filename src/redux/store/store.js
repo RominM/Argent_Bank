@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import { usersReducer } from '../reducers/usersReducer';
 
-const middleThunk = [thunk];
 const initialState = {
    token: null,
    loggedIn: false,
@@ -21,12 +20,11 @@ function setInitialState() {
    axios.defaults.headers.common = { Authorization: `bearer ${token}` };
    return { ...initialState, loggedIn: true, token };
 }
-const initState = setInitialState();
-console.log(initState);
 
+const middleThunk = [thunk];
 const store = createStore(
    usersReducer,
-   initState,
+   setInitialState(),
    composeWithDevTools(applyMiddleware(...middleThunk))
 );
 

@@ -1,21 +1,18 @@
 // React
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { deletedToken } from '../../redux/reducers/usersReducer';
 // Assets
 import logo from './../../assets/img/argentBankLogo.png';
-import { tokenSelect, userSelect } from '../../redux/selectors/selectors';
 
 const Header = () => {
    const dispatch = useDispatch();
-   //TODO Need "useEffect" ?
-   const tokenAccess = useSelector(tokenSelect);
-   const userAccess = useSelector(userSelect);
+   const store = useSelector((state) => state);
+   const userAccess = store.user;
 
    const handleSignOut = () => {
-      dispatch('LOGOUT_ACTION');
+      dispatch({ type: 'LOGOUT_ACTION' });
    };
 
    return (
@@ -30,7 +27,7 @@ const Header = () => {
                <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
-               {tokenAccess ? (
+               {!store.token ? (
                   <Link className="main-nav-item" to="/signIn">
                      <span className="fa fa-user-circle right"></span>
                      &nbsp;Sign In

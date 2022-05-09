@@ -1,19 +1,14 @@
-import { getToken, setBearer, userData } from '../../service/service';
+import { getToken, /*setBearer,*/ userData } from '../../service/service';
 import { saveLocal, clearStorage } from '../../service/storage';
-/*import {
-   loading,
-   logginSuceed,
-   logginFailure,
-   logout,
-   userProfile,
-} from './types';
-*/
+
 /**
- * @typedef {('LOADING_IN_PROGRESS'
+ * @typedef {(
+ * 'LOADING_IN_PROGRESS'
  * |'LOGIN_SUCEED'
  * |'LOGIN_FAILED'
  * |'LOGOUT_ACTION'
- * |'USER_PROFILE')} actionsTypes
+ * |'USER_PROFILE'
+ * )} actionsTypes
  */
 
 // Handler
@@ -33,14 +28,14 @@ const checkCredentials = (email, password, remember) => {
             type: 'LOGIN_SUCEED',
             payload: { token },
             loader: true,
+            error: false,
          });
 
-         setBearer(token);
-
+         // setBearer(token);
          saveLocal(token, remember);
 
-         const user = await userData();
-
+         const user = await userData(token);
+         console.log(user);
          dispatch({
             /** @type {actionsTypes} */
             type: 'USER_PROFILE',
@@ -48,7 +43,6 @@ const checkCredentials = (email, password, remember) => {
          });
       } catch (err) {
          clearStorage();
-
          console.error(err);
          dispatch({
             /** @type {actionsTypes} */

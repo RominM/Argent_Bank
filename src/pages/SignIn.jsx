@@ -17,17 +17,12 @@ import Loader from '../components/Loader';
 const SignIn = () => {
    const store = useSelector((state) => state);
    //STATE
-   //TODO handle every state in Redux
-   const [loading, setLoading] = useState(false);
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [remember, setRemember] = useState(false);
-   const [error, setError] = useState(null);
-
    // TOOLS
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   // const rememberMe = true;
 
    // OnSubmit
    const handleSignIn = (e) => {
@@ -35,11 +30,10 @@ const SignIn = () => {
       dispatch(checkCredentials(email, password, remember));
    };
 
-   // State
-   if (store.currentState === 'loading') setLoading(false);
-   if (store.currentState === 'logged') navigate('/dashboard');
-
-   if (loading) return <Loader />;
+   if (store.currentState === 'logged') {
+      navigate('/dashboard');
+   }
+   if (store.loader) return <Loader />;
 
    return (
       <HelmetProvider>
@@ -50,7 +44,9 @@ const SignIn = () => {
             <section className="sign-in-content">
                <i className="fa fa-user-circle sign-in-icon"></i>
                <h1>Sign In</h1>
-               {error && <span className="err-mes">Something wrong here</span>}
+               {store.error && (
+                  <span className="err-mes">Something wrong here</span>
+               )}
                <form onSubmit={(e) => handleSignIn(e)}>
                   <div className="input-wrapper">
                      <label htmlFor="username">Username</label>

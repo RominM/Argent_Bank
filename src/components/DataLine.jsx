@@ -15,11 +15,11 @@ function DataLine(props) {
    }
 
    function selectCategory() {
-      alert('Choisir une catégorie');
+      alert('Select a categories');
    }
 
    function addNotes() {
-      alert('Ajouter des notes');
+      alert('add notes');
    }
 
    return (
@@ -27,10 +27,10 @@ function DataLine(props) {
          <div className="dataLine">
             <div id="arrow" onClick={openClose}>
                <span className="downArrow" ref={arrow1}>
-                  <img src={down} alt="Flèche vers le bas" />
+                  <img src={down} alt="arrow down" />
                </span>
                <span className="upArrow" ref={arrow2}>
-                  <img src={up} alt="Flèche vers le haut" />
+                  <img src={up} alt="arrow up" />
                </span>
             </div>
             <div id="date">{props.date}</div>
@@ -44,7 +44,7 @@ function DataLine(props) {
                Category: {props.category}{' '}
                <img
                   src={pencil}
-                  alt="Stylo pour éditer"
+                  alt="pencil"
                   className="pencil"
                   onClick={selectCategory}
                />
@@ -53,7 +53,7 @@ function DataLine(props) {
                Notes:{' '}
                <img
                   src={pencil}
-                  alt="Stylo pour éditer"
+                  alt="pencil"
                   className="pencil"
                   onClick={addNotes}
                />

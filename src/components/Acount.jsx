@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Account = (props) => {
@@ -11,10 +11,13 @@ const Account = (props) => {
          </div>
          <div className="account-content-wrapper cta">
             <Link to={props.linkPath} className="account-button-link">
-               <button className="transaction-button">{props.transButton}</button>
+               <button className="transaction-button sheen-btn sheen">
+                  {props.transButton}
+               </button>
             </Link>
          </div>
-      </section>)
-}
+      </section>
+   );
+};
 
-export default Account
+export default Account;

@@ -18,7 +18,7 @@ const Profil = () => {
             <br />
             {/* {userAccess.firstName} {userAccess.lastName} */}
          </h1>
-         <button className="edit-button" onClick={handleEdit}>
+         <button className="edit-button sheen-btn sheen" onClick={handleEdit}>
             Edit Name
          </button>
       </div>

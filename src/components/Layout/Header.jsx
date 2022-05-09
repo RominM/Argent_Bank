@@ -10,7 +10,7 @@ const Header = () => {
    const dispatch = useDispatch();
    const store = useSelector((state) => state);
    const userAccess = store.user;
-
+   console.log(userAccess);
    const handleSignOut = () => {
       dispatch({ type: 'LOGOUT_ACTION' });
    };

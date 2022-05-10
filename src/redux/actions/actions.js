@@ -32,10 +32,12 @@ const checkCredentials = (email, password, remember) => {
          });
 
          // setBearer(token);
-         saveLocal(token, remember);
 
          const user = await userData(token);
-         console.log(user);
+         const firstName = user.firstName;
+         const lastName = user.lastName;
+         saveLocal(token, remember, firstName, lastName);
+
          dispatch({
             /** @type {actionsTypes} */
             type: 'USER_PROFILE',

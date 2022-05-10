@@ -40,7 +40,6 @@ export function usersReducer(state = initialState, action) {
          return {
             ...state,
             user: payload.user,
-            loader: false,
          };
       case 'LOGOUT_ACTION':
          clearStorage();

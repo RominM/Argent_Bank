@@ -35,7 +35,6 @@ async function userData(token) {
          }
       )
       .then((response) => {
-         console.log(response);
          return response.data.body;
       })
       .catch((error) => console.log(error));

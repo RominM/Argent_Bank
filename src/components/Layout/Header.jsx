@@ -1,16 +1,30 @@
 // React
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 // Assets
 import logo from './../../assets/img/argentBankLogo.png';
+import { userData } from '../../service/service';
 
 const Header = () => {
-   const dispatch = useDispatch();
    const store = useSelector((state) => state);
-   const userAccess = store.user;
-   console.log(userAccess);
+   const dispatch = useDispatch();
+
+   const [firstName, setFirstName] = useState('');
+   const [lastName, setLastName] = useState('');
+
+   useEffect(() => {
+      if (store.token) {
+         const fetchData = async () => {
+            const user = await userData(store.token);
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+         };
+         fetchData();
+      }
+   }, [store]);
+
    const handleSignOut = () => {
       dispatch({ type: 'LOGOUT_ACTION' });
    };
@@ -36,9 +50,7 @@ const Header = () => {
                   <div>
                      <Link className="main-nav-item" to="/dashboard">
                         <span className="fa fa-user-circle right"></span>
-                        &nbsp;Username
-                        {/* &nbsp;{userAccess.firstName}
-                        {userAccess.lastName} */}
+                        &nbsp;{firstName}&nbsp;{lastName}
                      </Link>
                      <Link
                         className="main-nav-item"

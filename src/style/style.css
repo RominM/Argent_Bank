@@ -545,3 +545,9 @@ circle {
    }
 }
 
+.edit-btn {
+   display: flex;
+   justify-content: space-around;
+   margin: 10px auto;
+   width: 175px;
+}

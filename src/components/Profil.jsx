@@ -32,12 +32,13 @@ const Profil = () => {
       const editLastName = document.querySelector('#editLastName').value;
       if (store.token) {
          const getEdit = async () => {
-            const putUser = await userEdit(
+            await userEdit(
+               // setFirstName(editFirstName),
                editFirstName,
+               // setLastName(editLastName),
                editLastName,
                store.token
             );
-            console.log(putUser);
          };
          getEdit();
       }

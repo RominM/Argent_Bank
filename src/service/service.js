@@ -3,16 +3,26 @@ import axios from 'axios';
 // Default
 axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 
-async function getToken(email, password) {
+const getToken = async (email, password) => {
    const response = await axios.post('/login', {
       email: email,
       password: password,
    });
    return response.data.body.token;
-}
+};
+
+//TODO Have to understand that
 /*
-async function userData() {
+const userData = async() => {
    const response = await axios.post('/profile');
+   return response.data.body;
+}
+
+const userEdit = async(firstName, lastName) => {
+   const response = await axios.post('/profile'),{
+            firstName,
+            lastName,
+         },;
    return response.data.body;
 }
 
@@ -23,7 +33,8 @@ const setBearer = (token) => {
 };
 */
 
-async function userData(token) {
+// Working with this way
+const userData = async (token) => {
    return await axios
       .post(
          'http://localhost:3001/api/v1/user/profile',
@@ -38,7 +49,7 @@ async function userData(token) {
          return response.data.body;
       })
       .catch((error) => console.log(error));
-}
+};
 
 async function userEdit(firstName, lastName, token) {
    return await axios

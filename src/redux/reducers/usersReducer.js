@@ -27,7 +27,7 @@ export function usersReducer(state = initialState, action) {
             loggedIn: true,
             currentState: 'logged',
             token: action.payload.token,
-            loader: false,
+            loader: true,
          };
       case 'LOGIN_FAILED':
          return {

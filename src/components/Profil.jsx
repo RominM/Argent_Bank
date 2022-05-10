@@ -1,9 +1,10 @@
 // React
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { userData } from '../service/service';
+import { useDispatch, useSelector } from 'react-redux';
+import { userData, userEdit } from '../service/service';
 
 const Profil = () => {
+   const dispatch = useDispatch();
    const store = useSelector((state) => state);
 
    const [edit, setEdit] = useState(false);
@@ -12,22 +13,34 @@ const Profil = () => {
 
    useEffect(() => {
       if (store.token) {
-         const fetchData = async () => {
+         const getUser = async () => {
             const user = await userData(store.token);
             setFirstName(user.firstName);
             setLastName(user.lastName);
          };
-         fetchData();
+         getUser();
       }
    }, [store]);
 
    const handleEdit = () => {
-      console.log('Handle edit');
       setEdit(true);
    };
 
    const saveProfile = (e) => {
-      console.log('Save profile');
+      e.preventDefault();
+      const editFirstName = document.querySelector('#editFirstName').value;
+      const editLastName = document.querySelector('#editLastName').value;
+      if (store.token) {
+         const getEdit = async () => {
+            const putUser = await userEdit(
+               editFirstName,
+               editLastName,
+               store.token
+            );
+            console.log(putUser);
+         };
+         getEdit();
+      }
       setEdit(false);
    };
 
@@ -58,15 +71,23 @@ const Profil = () => {
                   Welcome back
                   <br />
                   <div className="zone-edit">
-                     <input type="text" placeholder={firstName} />
-                     <input type="text" placeholder={lastName} />
+                     <input
+                        type="text"
+                        placeholder={firstName}
+                        id="editFirstName"
+                     />
+                     <input
+                        type="text"
+                        placeholder={lastName}
+                        id="editLastName"
+                     />
                   </div>
                   <div className="edit-btn">
                      <button
                         className="edit-button sheen-btn sheen"
                         onClick={saveProfile}
                      >
-                        Save
+                        &nbsp;Save&nbsp;
                      </button>
                      <button
                         className="edit-button sheen-btn sheen"

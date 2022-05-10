@@ -39,4 +39,25 @@ async function userData(token) {
       })
       .catch((error) => console.log(error));
 }
-export { getToken, userData };
+
+async function userEdit(firstName, lastName, token) {
+   return await axios
+      .put(
+         'http://localhost:3001/api/v1/user/profile',
+         {
+            firstName,
+            lastName,
+         },
+         {
+            headers: {
+               Authorization: 'Bearer' + token,
+            },
+         }
+      )
+      .then((response) => {
+         return response.data.body;
+      })
+      .catch((error) => console.log(error));
+}
+
+export { getToken, userData, userEdit };

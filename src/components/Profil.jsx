@@ -11,6 +11,7 @@ const Profil = () => {
    const [firstName, setFirstName] = useState('');
    const [lastName, setLastName] = useState('');
 
+   //TODO Fix the display of user data
    useEffect(() => {
       if (store.token) {
          const getUser = async () => {
@@ -26,6 +27,7 @@ const Profil = () => {
       setEdit(true);
    };
 
+   //TODO Fix the profil edited
    const saveProfile = (e) => {
       e.preventDefault();
       const editFirstName = document.querySelector('#editFirstName').value;
@@ -33,10 +35,8 @@ const Profil = () => {
       if (store.token) {
          const getEdit = async () => {
             await userEdit(
-               // setFirstName(editFirstName),
-               editFirstName,
-               // setLastName(editLastName),
-               editLastName,
+               setFirstName(editFirstName),
+               setLastName(editLastName),
                store.token
             );
          };

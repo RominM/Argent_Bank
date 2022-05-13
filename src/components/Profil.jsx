@@ -16,6 +16,7 @@ const Profil = () => {
       if (store.token) {
          const getUser = async () => {
             const user = await userData(store.token);
+            console.log(user);
             setFirstName(user.firstName);
             setLastName(user.lastName);
          };

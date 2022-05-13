@@ -11,7 +11,7 @@ const Profil = () => {
    const [firstName, setFirstName] = useState('');
    const [lastName, setLastName] = useState('');
 
-   //TODO Fix the display of user data
+   //TODO Fix the display of user data (useDispatch ?)
    useEffect(() => {
       if (store.token) {
          const getUser = async () => {

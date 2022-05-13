@@ -39,6 +39,7 @@ export function usersReducer(state = initialState, action) {
       case 'USER_PROFILE':
          return {
             ...state,
+            //TODO put the userDatas in the state ?
             user: payload.user,
          };
       case 'LOGOUT_ACTION':

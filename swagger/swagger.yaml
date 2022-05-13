@@ -10,9 +10,9 @@ info:
 #  - http
 tags:
    - name: Transactions
-     description: Operations to manage transactions
+   description: Operations to manage transactions
    - name: User
-     description: Operations to manage users
+   description: Operations to manage users
 paths:
    /user/login:
       post:
@@ -22,11 +22,11 @@ paths:
          description: API for Login
          parameters:
             - in: body
-              name: body
-              description: Login Payload
-              required: true
-              schema:
-                 $ref: '#/definitions/Login'
+            name: body
+            description: Login Payload
+            required: true
+            schema:
+               $ref: '#/definitions/Login'
          produces:
             - application/json
          responses:
@@ -46,11 +46,11 @@ paths:
          description: API for Signup
          parameters:
             - in: body
-              name: body
-              description: Signup Payload
-              required: true
-              schema:
-                 $ref: '#/definitions/User'
+            name: body
+            description: Signup Payload
+            required: true
+            schema:
+               $ref: '#/definitions/User'
          produces:
             - application/json
          responses:
@@ -72,10 +72,10 @@ paths:
          description: API for fetching a user profile
          parameters:
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token
-              required: true
-              type: 'string'
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+            type: 'string'
          produces:
             - application/json
          responses:
@@ -96,16 +96,16 @@ paths:
          description: API for updating a user profile
          parameters:
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token
-              required: true
-              type: 'string'
+            name: Authorization
+            description: Attach Bearer JWT token
+            required: true
+            type: 'string'
             - in: body
-              name: body
-              description: Update user profile attributes
-              required: true
-              schema:
-                 $ref: '#/definitions/UserProfile'
+            name: body
+            description: Update user profile attributes
+            required: true
+            schema:
+               $ref: '#/definitions/UserProfile'
          produces:
             - application/json
          responses:
@@ -117,7 +117,9 @@ paths:
                description: Invalid Fields
             '500':
                description: Internal Server Error
+   # API Endpoint
    /transactions:
+      # GET
       get:
          security:
             - Bearer: []
@@ -128,10 +130,10 @@ paths:
             - application/json
          parameters:
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token.
-              type: string
-              required: true
+            name: Authorization
+            description: Attach Bearer JWT token.
+            type: string
+            required: true
          responses:
             200:
                description: Successful Operation
@@ -143,6 +145,7 @@ paths:
                description: Transaction Not Found
             500:
                description: Internal Server Error
+      # POST
       post:
          security:
             - Bearer: []
@@ -155,16 +158,16 @@ paths:
             - application/json
          parameters:
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token.
-              type: string
-              required: true
+            name: Authorization
+            description: Attach Bearer JWT token.
+            type: string
+            required: true
             - in: body
-              name: body
-              description: Update user profile attributes
-              required: true
-              schema:
-                 $ref: '#/definitions/TransactionDescription'
+            name: body
+            description: Update user profile attributes
+            required: true
+            schema:
+               $ref: '#/definitions/TransactionDescription'
          responses:
             201:
                description: Successful Operation
@@ -174,7 +177,9 @@ paths:
                description: Transaction Not Found
             500:
                description: Internal Server Error
+      # ID
    /transactions/{transactionId}:
+      # GET
       get:
          security:
             - Bearer: []
@@ -185,14 +190,14 @@ paths:
             - application/json
          parameters:
             - in: path
-              name: transactionId
-              required: true
-              type: integer
+            name: transactionId
+            required: true
+            type: integer
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token.
-              type: string
-              required: true
+            name: Authorization
+            description: Attach Bearer JWT token.
+            type: string
+            required: true
          responses:
             200:
                description: Successful Operation
@@ -204,6 +209,7 @@ paths:
                description: Transaction Not Found
             500:
                description: Internal Server Error
+      # PUT
       put:
          security:
             - Bearer: []
@@ -216,20 +222,20 @@ paths:
             - application/json
          parameters:
             - in: path
-              name: transactionId
-              required: true
-              type: integer
+            name: transactionId
+            required: true
+            type: integer
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token.
-              type: string
-              required: true
+            name: Authorization
+            description: Attach Bearer JWT token.
+            type: string
+            required: true
             - in: body
-              name: body
-              description: Update user profile attributes
-              required: true
-              schema:
-                 $ref: '#/definitions/TransactionDescription'
+            name: body
+            description: Update user profile attributes
+            required: true
+            schema:
+               $ref: '#/definitions/TransactionDescription'
          responses:
             204:
                description: Successful Operation
@@ -239,6 +245,7 @@ paths:
                description: Transaction Not Found
             500:
                description: Internal Server Error
+      # DELETE
       delete:
          security:
             - Bearer: []
@@ -251,15 +258,15 @@ paths:
             - application/json
          parameters:
             - in: path
-              name: transactionId
-              description: ID of the transaction to delete
-              type: integer
-              required: true
+            name: transactionId
+            description: ID of the transaction to delete
+            type: integer
+            required: true
             - in: header
-              name: Authorization
-              description: Attach Bearer JWT token.
-              type: string
-              required: true
+            name: Authorization
+            description: Attach Bearer JWT token.
+            type: string
+            required: true
          responses:
             204:
                description: Successful Operation
@@ -323,7 +330,8 @@ definitions:
             type: string
          lastName:
             type: string
-   TransactionsResponse:
+  # RESPONSE
+  TransactionsResponse:
       type: object
       properties:
          status:
@@ -372,13 +380,13 @@ definitions:
          note:
             type: string
             description: user's notes for transaction
-   TransactionDescription:
+  TransactionDescription:
       type: object
       properties:
-         category:
+        category:
             type: string
             description: transaction's category
-         note:
+        note:
             type: string
             description: user's notes for transaction
 # Added by API Auto Mocking Plugin
@@ -386,5 +394,5 @@ host: virtserver.swaggerhub.com
 basePath: /RominManogil_12_14032022_swagger/1.0.0
 # Added by API Auto Mocking Plugin
 schemes:
-   - https
-   - http
+  - https
+  - http

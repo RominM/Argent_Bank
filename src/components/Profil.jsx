@@ -1,12 +1,19 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/actions/actions';
 
 const Profil = () => {
    const store = useSelector((state) => state);
+   const user = store.user;
    const [edit, setEdit] = useState(false);
    const dispatch = useDispatch();
+
+   console.log(store);
+   const firstName = user && user.firstName;
+   const lastName = user && user.lastName;
+   // const [firstName, setFirstName] = useState(user && user.firstName);
+   // const [lastName, setLastName] = useState(user && user.lastName);
 
    // OPEN MODALE
    const handleEdit = () => {
@@ -24,10 +31,13 @@ const Profil = () => {
       dispatch(setUserData(editFirstName, editLastName));
       console.log(editFirstName, editLastName);
       setEdit(false);
+      return [editFirstName, editLastName];
    };
 
-   const firstName = store.user === null ? '' : store.user.firstName;
-   const lastName = store.user === null ? '' : store.user.lastName;
+   // useEffect(() => {
+   //    setFirstName(editFirstName);
+   //    setLastName(editLastName);
+   // }, [user]);
 
    return (
       <div>

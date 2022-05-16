@@ -63,7 +63,6 @@ const getUserData = async () => {
    return async (dispatch) => {
       try {
          const user = await userData();
-
          dispatch({
             type: 'USER_PROFILE',
             payload: user,
@@ -91,7 +90,6 @@ const setUserData = (firstName, lastName) => {
          dispatch({
             /** @type {actionsTypes} */
             type: 'SAVE_SUCCEED',
-            payload: edit,
          });
       } catch (err) {
          console.error(err);
@@ -102,4 +100,5 @@ const setUserData = (firstName, lastName) => {
       }
    };
 };
+
 export { checkCredentials, getUserData, setUserData };

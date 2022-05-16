@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 // Redux
@@ -24,16 +24,17 @@ const SignIn = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   // OnSubmit
    const handleSignIn = (e) => {
       e.preventDefault();
       dispatch(checkCredentials(email, password, remember));
    };
 
-   if (store.currentState === 'logged') {
-      navigate('/dashboard');
-   }
-   if (store.loader) return <Loader />;
+   useEffect(() => {
+      if (store.currentState === 'logged') {
+         navigate('/dashboard');
+      }
+      if (store.loader) return <Loader />;
+   });
 
    return (
       <HelmetProvider>

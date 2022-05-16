@@ -3,6 +3,7 @@
  */
 import { initialState } from '../store/store';
 import { clearStorage } from '../../service/storage';
+import { setBearer } from '../../service/service';
 
 /**
  *
@@ -22,6 +23,7 @@ export function usersReducer(state = initialState, action) {
             loader: payload,
          };
       case 'LOGIN_SUCEED':
+         setBearer(action.payload.token);
          return {
             ...state,
             loggedIn: true,
@@ -39,13 +41,16 @@ export function usersReducer(state = initialState, action) {
       case 'USER_PROFILE':
          return {
             ...state,
-            //TODO put the userDatas in the state ?
+            user: payload.user,
+         };
+      case 'SAVE_SUCEED':
+         return {
+            ...state,
             user: payload.user,
          };
       case 'LOGOUT_ACTION':
          clearStorage();
          return initialState;
-
       default:
          return state;
    }

@@ -1,55 +1,33 @@
 // React
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userData, userEdit } from '../service/service';
+import { setUserData } from '../redux/actions/actions';
 
 const Profil = () => {
-   const dispatch = useDispatch();
    const store = useSelector((state) => state);
-
    const [edit, setEdit] = useState(false);
-   const [firstName, setFirstName] = useState('');
-   const [lastName, setLastName] = useState('');
+   const dispatch = useDispatch();
 
-   //TODO Fix the display of user data (useDispatch ?)
-   useEffect(() => {
-      if (store.token) {
-         const getUser = async () => {
-            const user = await userData(store.token);
-            console.log(user);
-            setFirstName(user.firstName);
-            setLastName(user.lastName);
-         };
-         getUser();
-      }
-   }, [store]);
-
+   // OPEN MODALE
    const handleEdit = () => {
       setEdit(true);
    };
-
-   //TODO Fix the profil edited
+   // CLOSE MODALE
+   const cancelEdit = () => {
+      setEdit(false);
+   };
+   // SAVE EDITION
    const saveProfile = (e) => {
       e.preventDefault();
       const editFirstName = document.querySelector('#editFirstName').value;
       const editLastName = document.querySelector('#editLastName').value;
-      if (store.token) {
-         const getEdit = async () => {
-            await userEdit(
-               setFirstName(editFirstName),
-               setLastName(editLastName),
-               store.token
-            );
-         };
-         getEdit();
-      }
+      dispatch(setUserData(editFirstName, editLastName));
+      console.log(editFirstName, editLastName);
       setEdit(false);
    };
 
-   const cancelEdit = () => {
-      console.log('Cancel edit');
-      setEdit(false);
-   };
+   const firstName = store.user === null ? '' : store.user.firstName;
+   const lastName = store.user === null ? '' : store.user.lastName;
 
    return (
       <div>

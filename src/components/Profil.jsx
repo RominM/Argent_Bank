@@ -1,15 +1,22 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/actions/actions';
 
 const Profil = () => {
    const store = useSelector((state) => state);
+   const user = store.user;
+
    const [edit, setEdit] = useState(false);
    const dispatch = useDispatch();
 
+   const firstName = user && user.firstName;
+   const lastName = user && user.lastName;
+   // const [firstName, setFirstName] = useState(user && user.firstName);
+   // const [lastName, setLastName] = useState(user && user.lastName);
+
    // OPEN MODALE
-   const handleEdit = () => {
+   const openModale = () => {
       setEdit(true);
    };
    // CLOSE MODALE
@@ -17,17 +24,20 @@ const Profil = () => {
       setEdit(false);
    };
    // SAVE EDITION
-   const saveProfile = (e) => {
+   const onSave = (e) => {
       e.preventDefault();
       const editFirstName = document.querySelector('#editFirstName').value;
       const editLastName = document.querySelector('#editLastName').value;
       dispatch(setUserData(editFirstName, editLastName));
       console.log(editFirstName, editLastName);
       setEdit(false);
+      console.log(user);
    };
 
-   const firstName = store.user === null ? '' : store.user.firstName;
-   const lastName = store.user === null ? '' : store.user.lastName;
+   // useEffect(() => {
+   //    setFirstName(editFirstName);
+   //    setLastName(editLastName);
+   // }, [user]);
 
    return (
       <div>
@@ -40,7 +50,7 @@ const Profil = () => {
                </h1>
                <button
                   className="edit-button sheen-btn sheen"
-                  onClick={handleEdit}
+                  onClick={openModale}
                >
                   Edit Name
                </button>
@@ -65,7 +75,7 @@ const Profil = () => {
                   <div className="edit-btn">
                      <button
                         className="edit-button sheen-btn sheen"
-                        onClick={saveProfile}
+                        onClick={onSave}
                      >
                         &nbsp;Save&nbsp;
                      </button>

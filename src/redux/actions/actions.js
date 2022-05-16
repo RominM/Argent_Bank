@@ -63,7 +63,7 @@ const getUserData = async () => {
    return async (dispatch) => {
       try {
          const user = await userData();
-
+         console.log(user);
          dispatch({
             type: 'USER_PROFILE',
             payload: user,
@@ -102,4 +102,5 @@ const setUserData = (firstName, lastName) => {
       }
    };
 };
+
 export { checkCredentials, getUserData, setUserData };

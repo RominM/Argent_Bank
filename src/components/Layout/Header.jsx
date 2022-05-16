@@ -8,6 +8,7 @@ import logo from './../../assets/img/argentBankLogo.png';
 
 const Header = () => {
    const store = useSelector((state) => state);
+   const user = store.user;
    const dispatch = useDispatch();
 
    const handleSignOut = () => {
@@ -15,9 +16,7 @@ const Header = () => {
    };
 
    const title =
-      store.user !== null
-         ? store.user.firstName + ' ' + store.user.lastName
-         : 'SignIn';
+      user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
 
    return (
       <header>

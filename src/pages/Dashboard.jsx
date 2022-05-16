@@ -8,7 +8,6 @@ import Acount from '../components/Acount';
 
 const Dashboard = () => {
    const store = useSelector((state) => state);
-   // const tokenAccess = useSelector((state) => state.token);
 
    return (
       store.token && (

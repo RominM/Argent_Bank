@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../redux/actions/actions';
 
@@ -7,19 +7,11 @@ const Profil = () => {
    const store = useSelector((state) => state);
    const user = store.user;
 
-   console.log(user);
    const [edit, setEdit] = useState(false);
    const dispatch = useDispatch();
 
    const firstName = user && user.firstName;
    const lastName = user && user.lastName;
-   // const [firstName, setFirstName] = useState(user.firstName);
-   // const [lastName, setLastName] = useState(user.lastName);
-
-   useEffect(() => {
-      // setFirstName();
-      // setLastName();
-   }, [user]);
 
    // OPEN MODALE
    const openModale = () => {
@@ -45,17 +37,8 @@ const Profil = () => {
                <h1>
                   Welcome back
                   <br />
-                  {
-                     // setFirstName(
-                     firstName
-
-                     // )
-                  }{' '}
-                  {
-                     // setLastName(
-                     lastName
-                     // )
-                  }
+                  {firstName}
+                  {lastName}
                </h1>
                <button
                   className="edit-button sheen-btn sheen"

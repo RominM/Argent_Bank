@@ -1,8 +1,4 @@
-import {
-   getToken,
-   /*setBearer,*/ userData,
-   userEdit,
-} from '../../service/service';
+import { getToken, userData, userEdit } from '../../service/service';
 import { saveLocal, clearStorage } from '../../service/storage';
 
 /**
@@ -10,9 +6,7 @@ import { saveLocal, clearStorage } from '../../service/storage';
  * 'LOADING_IN_PROGRESS'
  * |'LOGIN_SUCEED'
  * |'LOGIN_FAILED'
- * |'LOGOUT_ACTION'
  * |'USER_PROFILE'
- * |'USER_PROFILE_ERROR'
  * |'SAVE_SUCCEED'
  * |'SAVE_FAILED'
  * )} actionsTypes
@@ -59,38 +53,13 @@ const checkCredentials = (email, password, remember) => {
    };
 };
 
-const getUserData = async () => {
-   return async (dispatch) => {
-      try {
-         const user = await userData();
-         console.log(user);
-         dispatch({
-            type: 'USER_PROFILE',
-            payload: user,
-         });
-      } catch (error) {
-         console.log(error);
-         dispatch({
-            type: 'USER_PROFILE_ERROR',
-            payload: error,
-         });
-      }
-   };
-};
-
 const setUserData = (firstName, lastName) => {
    return async (dispatch) => {
       try {
-         // dispatch({
-         //    /** @type {actionsTypes} */
-         //    type: 'LOADING_IN_PROGRESS',
-         //    payload: false, // shouldn't be true ?
-         // });
          dispatch({
             /** @type {actionsTypes} */
             type: 'SAVE_SUCCEED',
             payload: {
-               // loader: false,
                user: { firstName, lastName },
             },
          });
@@ -105,4 +74,4 @@ const setUserData = (firstName, lastName) => {
    };
 };
 
-export { checkCredentials, getUserData, setUserData };
+export { checkCredentials, setUserData };

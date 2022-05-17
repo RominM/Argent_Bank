@@ -21,13 +21,10 @@ const userData = async () => {
 // EDITION
 const userEdit = async (firstName, lastName) => {
    console.log('axios');
-   const response = await axios.put('/profile', {
+   await axios.put('/profile', {
       firstName,
       lastName,
    });
-   console.log('USER EDIT FUNC : ');
-   console.log(response.data.body);
-   // return response.data.body;
 };
 
 // BEARER

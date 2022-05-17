@@ -1,4 +1,6 @@
-function TransTitle(props) {
+import React from 'react';
+
+const TransTitle = (props) => {
    return (
       <section className="titleSection">
          <div className="titleSection-content-wrapper">
@@ -10,6 +12,6 @@ function TransTitle(props) {
          </div>
       </section>
    );
-}
+};
 
 export default TransTitle;

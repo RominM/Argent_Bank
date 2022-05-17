@@ -33,8 +33,8 @@ const SignIn = () => {
       if (store.currentState === 'logged') {
          navigate('/dashboard');
       }
-      if (store.loader) return <Loader />;
    });
+   if (store.loader) return <Loader />;
 
    return (
       <HelmetProvider>

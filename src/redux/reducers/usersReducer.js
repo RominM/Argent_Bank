@@ -4,7 +4,6 @@
 import { initialState } from '../store/store';
 import { clearStorage } from '../../service/storage';
 import { setBearer } from '../../service/service';
-import { setUserData } from '../actions/actions';
 
 /**
  *
@@ -14,6 +13,7 @@ import { setUserData } from '../actions/actions';
  * @param {actionsTypes} action.type
  * @returns
  */
+
 export function usersReducer(state = initialState, action) {
    const { payload } = action;
    switch (action.type) {
@@ -39,7 +39,6 @@ export function usersReducer(state = initialState, action) {
             loader: false,
          };
       case 'SAVE_SUCCEED':
-         //setUserData();
          console.log({
             ...state,
             user: {

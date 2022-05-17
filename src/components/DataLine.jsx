@@ -1,9 +1,9 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import down from './../assets/img/down-chevron.png';
 import up from './../assets/img/up-chevron.png';
 import pencil from './../assets/img/pencil.png';
 
-function DataLine(props) {
+const DataLine = (props) => {
    const arrow1 = useRef();
    const arrow2 = useRef();
    const moreInfo = useRef();
@@ -61,6 +61,6 @@ function DataLine(props) {
          </div>
       </div>
    );
-}
+};
 
 export default DataLine;

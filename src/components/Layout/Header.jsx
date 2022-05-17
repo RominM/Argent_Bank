@@ -13,11 +13,12 @@ const Header = () => {
    const dispatch = useDispatch();
 
    const title =
-   user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
-   
+      user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
+
    const handleSignOut = () => {
       dispatch({ type: 'LOGOUT_ACTION' });
    };
+
    return (
       <header>
          <nav className="main-nav">

@@ -7,13 +7,19 @@ const Profil = () => {
    const store = useSelector((state) => state);
    const user = store.user;
 
+   console.log(user);
    const [edit, setEdit] = useState(false);
    const dispatch = useDispatch();
 
    const firstName = user && user.firstName;
    const lastName = user && user.lastName;
-   // const [firstName, setFirstName] = useState(user && user.firstName);
-   // const [lastName, setLastName] = useState(user && user.lastName);
+   // const [firstName, setFirstName] = useState(user.firstName);
+   // const [lastName, setLastName] = useState(user.lastName);
+
+   useEffect(() => {
+      // setFirstName();
+      // setLastName();
+   }, [user]);
 
    // OPEN MODALE
    const openModale = () => {
@@ -29,15 +35,8 @@ const Profil = () => {
       const editFirstName = document.querySelector('#editFirstName').value;
       const editLastName = document.querySelector('#editLastName').value;
       dispatch(setUserData(editFirstName, editLastName));
-      console.log(editFirstName, editLastName);
       setEdit(false);
-      console.log(user);
    };
-
-   // useEffect(() => {
-   //    setFirstName(editFirstName);
-   //    setLastName(editLastName);
-   // }, [user]);
 
    return (
       <div>
@@ -46,7 +45,17 @@ const Profil = () => {
                <h1>
                   Welcome back
                   <br />
-                  {firstName} {lastName}
+                  {
+                     // setFirstName(
+                     firstName
+
+                     // )
+                  }{' '}
+                  {
+                     // setLastName(
+                     lastName
+                     // )
+                  }
                </h1>
                <button
                   className="edit-button sheen-btn sheen"

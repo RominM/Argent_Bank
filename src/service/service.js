@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setUserData } from '../redux/actions/actions';
 // Default
 axios.defaults.baseURL = 'http://localhost:3001/api/v1/user';
 
@@ -14,17 +13,21 @@ const getToken = async (email, password) => {
 // USER DATA
 const userData = async () => {
    const response = await axios.post('/profile');
+   console.log('USER DATA FUNC : ');
+   console.log(response.data.body);
    return response.data.body;
 };
 
 // EDITION
 const userEdit = async (firstName, lastName) => {
+   console.log('axios');
    const response = await axios.put('/profile', {
       firstName,
       lastName,
    });
+   console.log('USER EDIT FUNC : ');
    console.log(response.data.body);
-   return response.data.body;
+   // return response.data.body;
 };
 
 // BEARER

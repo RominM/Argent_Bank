@@ -4,6 +4,7 @@
 import { initialState } from '../store/store';
 import { clearStorage } from '../../service/storage';
 import { setBearer } from '../../service/service';
+import { setUserData } from '../actions/actions';
 
 /**
  *
@@ -31,22 +32,34 @@ export function usersReducer(state = initialState, action) {
             token: action.payload.token,
             loader: true,
          };
+      case 'USER_PROFILE':
+         return {
+            ...state,
+            user: payload.user,
+            loader: false,
+         };
+      case 'SAVE_SUCCEED':
+         //setUserData();
+         console.log({
+            ...state,
+            user: {
+               ...state.user,
+               ...payload.user,
+            },
+         });
+         return {
+            ...state,
+            user: {
+               ...state.user,
+               ...payload.user,
+            },
+         };
       case 'LOGIN_FAILED':
          return {
             ...state,
             error: true,
             loader: false,
             currentState: 'failed',
-         };
-      case 'USER_PROFILE':
-         return {
-            ...state,
-            user: payload.user,
-         };
-      case 'SAVE_SUCEED':
-         return {
-            ...state,
-            user: payload.user,
          };
       case 'LOGOUT_ACTION':
          clearStorage();

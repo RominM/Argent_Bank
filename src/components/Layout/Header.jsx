@@ -9,15 +9,15 @@ import logo from './../../assets/img/argentBankLogo.png';
 const Header = () => {
    const store = useSelector((state) => state);
    const user = store.user;
+
    const dispatch = useDispatch();
 
+   const title =
+   user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
+   
    const handleSignOut = () => {
       dispatch({ type: 'LOGOUT_ACTION' });
    };
-
-   const title =
-      user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
-
    return (
       <header>
          <nav className="main-nav">

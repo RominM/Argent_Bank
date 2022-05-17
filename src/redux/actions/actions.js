@@ -13,7 +13,7 @@ import { saveLocal, clearStorage } from '../../service/storage';
  * |'LOGOUT_ACTION'
  * |'USER_PROFILE'
  * |'USER_PROFILE_ERROR'
- * |'SAVE_SUCCEED',
+ * |'SAVE_SUCCEED'
  * |'SAVE_FAILED'
  * )} actionsTypes
  */
@@ -81,18 +81,20 @@ const getUserData = async () => {
 const setUserData = (firstName, lastName) => {
    return async (dispatch) => {
       try {
-         dispatch({
-            /** @type {actionsTypes} */
-            type: 'LOADING_IN_PROGRESS',
-            payload: true,
-         });
-         const edit = await userEdit(firstName, lastName);
-         console.log(edit);
+         // dispatch({
+         //    /** @type {actionsTypes} */
+         //    type: 'LOADING_IN_PROGRESS',
+         //    payload: false, // shouldn't be true ?
+         // });
          dispatch({
             /** @type {actionsTypes} */
             type: 'SAVE_SUCCEED',
-            payload: edit,
+            payload: {
+               // loader: false,
+               user: { firstName, lastName },
+            },
          });
+         await userEdit(firstName, lastName);
       } catch (err) {
          console.error(err);
          dispatch({

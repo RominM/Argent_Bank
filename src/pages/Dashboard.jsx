@@ -5,9 +5,12 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 // Components
 import Profil from '../components/Profil';
 import Acount from '../components/Acount';
+import Loader from '../components/Loader';
 
 const Dashboard = () => {
    const store = useSelector((state) => state);
+
+   if (store.loader) return <Loader />;
 
    return (
       store.token && (

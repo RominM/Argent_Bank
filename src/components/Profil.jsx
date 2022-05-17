@@ -37,7 +37,7 @@ const Profil = () => {
                <h1>
                   Welcome back
                   <br />
-                  {firstName}
+                  {firstName}&nbsp;
                   {lastName}
                </h1>
                <button

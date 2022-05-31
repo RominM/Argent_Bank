@@ -9,12 +9,22 @@ import logo from './../../assets/img/argentBankLogo.png';
 const Header = () => {
    const store = useSelector((state) => state);
    const user = store.user;
-
+   //TOOLS
    const dispatch = useDispatch();
 
+   /**
+    * If user exist : Fullname otherwise SignIn
+    * @param { object } user form store
+    * @param { string } firstName
+    * @param { string } lastName
+    */
    const title =
       user !== null ? user.firstName + ' ' + user.lastName : 'SignIn';
 
+   /**
+    * @function handleSignOut
+    * Logout the user then clear the localStorage
+    */
    const handleSignOut = () => {
       dispatch({ type: 'LOGOUT_ACTION' });
    };

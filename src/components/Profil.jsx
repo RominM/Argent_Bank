@@ -1,17 +1,21 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserData } from '../redux/actions/actions';
+import { getUserData, setUserData } from '../redux/actions/actions';
 
 const Profil = () => {
    const store = useSelector((state) => state);
    const user = store.user;
 
+   const firstName = user && user.firstName;
+   const lastName = user && user.lastName;
+
    const [edit, setEdit] = useState(false);
    const dispatch = useDispatch();
 
-   const firstName = user && user.firstName;
-   const lastName = user && user.lastName;
+   useEffect(() => {
+      dispatch(getUserData());
+   }, [dispatch]);
 
    // OPEN MODALE
    const openModale = () => {
@@ -21,6 +25,7 @@ const Profil = () => {
    const cancelEdit = () => {
       setEdit(false);
    };
+
    // SAVE EDITION
    const onSave = (e) => {
       e.preventDefault();

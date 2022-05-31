@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 const Account = (props) => {
    return (
@@ -21,3 +22,11 @@ const Account = (props) => {
 };
 
 export default Account;
+
+Account.propTypes = {
+   title: PropTypes.string,
+   amount: PropTypes.string,
+   amountDescr: PropTypes.string,
+   linkPath: PropTypes.string,
+   transButton: PropTypes.string,
+};

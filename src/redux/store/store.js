@@ -17,7 +17,7 @@ function setInitialState() {
    const token =
       localStorage.getItem('token') || sessionStorage.getItem('token') || null;
    if (token === null) return initialState;
-   axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
    return { ...initialState, loggedIn: true, token };
 }
 

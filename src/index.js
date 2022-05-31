@@ -11,12 +11,12 @@ import App from './App';
 import './style/style.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+   <React.StrictMode>
+      <Provider store={store}>
+         <Router>
+            <App />
+         </Router>
+      </Provider>
+   </React.StrictMode>,
+   document.getElementById('root')
 );

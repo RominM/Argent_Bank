@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 const TransTitle = (props) => {
    return (
@@ -15,3 +16,9 @@ const TransTitle = (props) => {
 };
 
 export default TransTitle;
+
+TransTitle.propTypes = {
+   title: PropTypes.string,
+   amount: PropTypes.string,
+   amountDescr: PropTypes.string,
+};

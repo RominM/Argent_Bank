@@ -28,8 +28,8 @@ export function usersReducer(state = initialState, action) {
          return {
             ...state,
             loggedIn: true,
-            currentState: 'logged',
             token: action.payload.token,
+            currentState: 'logged',
             loader: true,
          };
       case 'USER_PROFILE':
@@ -39,13 +39,6 @@ export function usersReducer(state = initialState, action) {
             loader: false,
          };
       case 'SAVE_SUCCEED':
-         console.log({
-            ...state,
-            user: {
-               ...state.user,
-               ...payload.user,
-            },
-         });
          return {
             ...state,
             user: {

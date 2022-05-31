@@ -8,6 +8,12 @@ import icoMoney from './../assets/img/icon-money.png';
 import icoChat from './../assets/img/icon-chat.png';
 import icoSecu from './../assets/img/icon-security.png';
 
+/**
+ * Render the Homepage of the application
+ * @function Home
+ * @returns { ReactElement }
+ */
+
 const Home = () => {
    return (
       <HelmetProvider>
@@ -21,7 +27,9 @@ const Home = () => {
                   <p className="subtitle">No fees.</p>
                   <p className="subtitle">No minimum deposit.</p>
                   <p className="subtitle">High interest rates.</p>
-                  <p className="text">Open a savings account with Argent Bank today!</p>
+                  <p className="text">
+                     Open a savings account with Argent Bank today!
+                  </p>
                </section>
             </div>
             <section className="features">
@@ -29,17 +37,20 @@ const Home = () => {
                   icon={icoMoney}
                   icAlt="Chat Money"
                   title="More savings means higher rates"
-                  descript="The more you save with us, the higher your interest rate will b11e!" />
+                  descript="The more you save with us, the higher your interest rate will b11e!"
+               />
                <Features
                   icon={icoChat}
                   icAlt="Chat Icon"
                   title="You are our #1 priority"
-                  descript="Need to talk to a representative? You can get in touch through our 24/7 1chat or through a phone call in less than 5 minutes." />
+                  descript="Need to talk to a representative? You can get in touch through our 24/7 1chat or through a phone call in less than 5 minutes."
+               />
                <Features
                   icon={icoSecu}
                   icAlt="Chat Secu"
                   title="Security you can trust"
-                  descript="We use top of the line encryption to make sure your data and money is always safe." />
+                  descript="We use top of the line encryption to make sure your data and money is always safe."
+               />
             </section>
          </main>
       </HelmetProvider>

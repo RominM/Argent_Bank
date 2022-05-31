@@ -9,19 +9,28 @@ import { saveLocal, clearStorage } from '../../service/storage';
  * |'USER_PROFILE'
  * |'SAVE_SUCCEED'
  * |'SAVE_FAILED'
+ * |'PROFILE_FAILED'
  * )} actionsTypes
  */
 
-const checkCredentials = (email, password, remember) => {
-   return async (dispatch) => {
-      dispatch({
-         /** @type {actionsTypes} */
-         type: 'LOADING_IN_PROGRESS',
-         payload: true,
-      });
+/**
+ * Check if user exist
+ * @param { string } email
+ * @param { string } password
+ * @returns { function }
+ */
 
+const checkCredentials = (email, password) => {
+   return async (dispatch) => {
       try {
+         dispatch({
+            /** @type {actionsTypes} */
+            type: 'LOADING_IN_PROGRESS',
+            payload: true,
+         });
+         // sent to axios
          const token = await getToken(email, password);
+         saveLocal(token);
 
          dispatch({
             /** @type {actionsTypes} */
@@ -29,17 +38,6 @@ const checkCredentials = (email, password, remember) => {
             payload: { token },
             loader: true,
             error: false,
-         });
-
-         const user = await userData();
-         const firstName = user.firstName;
-         const lastName = user.lastName;
-         saveLocal(token, remember, firstName, lastName);
-
-         dispatch({
-            /** @type {actionsTypes} */
-            type: 'USER_PROFILE',
-            payload: { user },
          });
       } catch (err) {
          clearStorage();
@@ -53,6 +51,44 @@ const checkCredentials = (email, password, remember) => {
    };
 };
 
+/**
+ * Get informations of logged user
+ * @returns { function }
+ */
+
+const getUserData = () => {
+   return async (dispatch) => {
+      try {
+         dispatch({
+            /** @type {actionsTypes} */
+            type: 'LOADING_IN_PROGRESS',
+            payload: true,
+         });
+         // sent to axios
+         const user = await userData();
+         userEdit(user.firstName, user.lastName);
+         dispatch({
+            /** @type {actionsTypes} */
+            type: 'USER_PROFILE',
+            payload: { user },
+         });
+      } catch (err) {
+         console.log(err);
+         dispatch({
+            /** @type {actionsTypes} */
+            type: 'PROFILE_FAILED',
+         });
+      }
+   };
+};
+
+/**
+ * Update the user informations
+ * @param { string } firstName
+ * @param { string } lastName
+ * @returns { function }
+ */
+
 const setUserData = (firstName, lastName) => {
    return async (dispatch) => {
       try {
@@ -63,6 +99,7 @@ const setUserData = (firstName, lastName) => {
                user: { firstName, lastName },
             },
          });
+         // sent to axios
          await userEdit(firstName, lastName);
       } catch (err) {
          console.error(err);
@@ -74,4 +111,4 @@ const setUserData = (firstName, lastName) => {
    };
 };
 
-export { checkCredentials, setUserData };
+export { checkCredentials, getUserData, setUserData };

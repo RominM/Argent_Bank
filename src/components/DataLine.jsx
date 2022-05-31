@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { PropTypes } from 'prop-types';
 import down from './../assets/img/down-chevron.png';
 import up from './../assets/img/up-chevron.png';
 import pencil from './../assets/img/pencil.png';
@@ -64,3 +65,12 @@ const DataLine = (props) => {
 };
 
 export default DataLine;
+
+DataLine.propTypes = {
+   date: PropTypes.string,
+   descr: PropTypes.string,
+   amount: PropTypes.string,
+   balance: PropTypes.string,
+   transType: PropTypes.string,
+   category: PropTypes.string,
+};

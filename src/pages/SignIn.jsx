@@ -13,17 +13,26 @@ import Loader from '../components/Loader';
  * @function SignIn
  * @returns { ReactElement }
  */
-
 const SignIn = () => {
    const store = useSelector((state) => state);
-   //STATE
-   const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('');
-   const [remember, setRemember] = useState(false);
    // TOOLS
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
+   //STATE
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [remember, setRemember] = useState(false);
+
+   /**
+    * Sign-in attempt
+    * @function handleSignIn - Click on SignIn button
+    * @function checkCredentials - If user is valid Token will be sent in localStorage
+    * @param { object } e
+    * @param { string } email
+    * @param { string } password
+    * @param { boolean } remember //not used yet
+    */
    const handleSignIn = (e) => {
       e.preventDefault();
       dispatch(checkCredentials(email, password, remember));

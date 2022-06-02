@@ -26,6 +26,7 @@ code {
 }
 
 .App {
+   position: relative;
    text-align: center;
 }
 
@@ -66,7 +67,10 @@ code {
 
 .main {
    position: absolute;
+   top: 7%;
+   bottom: 5%;
    flex: 1;
+   overflow: auto;
 }
 
 .bg-dark {
@@ -259,7 +263,7 @@ code {
 .footer {
    position: absolute;
    bottom: 0;
-   display: flex;
+   /* display: flex; */
    justify-content: center;
    width: 100%;
    border-top: 2px solid #ccc;
@@ -321,7 +325,9 @@ code {
    color: #fff;
    margin-bottom: 2rem;
 }
-
+.account-button-link {
+   text-decoration: none;
+}
 .transaction-button {
    display: block;
    width: 100%;

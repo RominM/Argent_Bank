@@ -1,5 +1,7 @@
 # Project 13 - Utilisez une API pour un compte utilisateur bancaire avec React
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0b47f33d-4fd0-4f24-bc60-8dbace9a7195/deploy-status)](https://app.netlify.com/sites/resonant-fudge-ab2499/deploys)
+
 ## Getting Started
 
 This project was bootstrapped with Create React App and use
